@@ -1,0 +1,6 @@
+^scripts$
+^.*\.zip$
+^\.git$
+^\.gitignore$
+^\.Rproj\.user$
+^.*\.Rproj$

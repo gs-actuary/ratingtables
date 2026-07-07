@@ -1,0 +1,18 @@
+Package: ratingtables
+Type: Package
+Title: Lightweight Table-Driven Rating Engine
+Version: 0.0.1
+Authors@R: person("Greg", "Sollenberger", email = "yagreg7@yahoo.com", role = c("aut", "cre"))
+Description: A lightweight, dependency-free rating kernel for table-driven insurance rating. It supports long-form factor tables, specification-driven calculations, validation, optional traces, rate caps, and simple trace reshaping helpers.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Depends:
+    R (>= 3.6.0)
+Suggests:
+    testthat (>= 3.0.0),
+    tibble,
+    dplyr,
+    tidyr
+Config/testthat/edition: 3
+Config/roxygen2/version: 8.0.0
