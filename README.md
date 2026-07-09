@@ -1,18 +1,36 @@
 # ratingtables
 
-`ratingtables` is a lightweight, dependency-free R package skeleton for table-driven rating.
+`ratingtables` is a lightweight R package for table-driven rating. It takes policy data, normalized rating tables, and a calculation spec, then returns rated values and optional trace output.
 
-It provides:
+## Motivation
+
+`ratingtables` is designed to address a common problem in insurance premium rating and other table-driven pricing systems: the rating logic is often split across many separate spreadsheets, tabs, formulas, and implementation artifacts. Those formats may be readable to humans, but they are difficult to validate, compare, version, and reproduce programmatically.
+
+This package represents rating factors and additives in a single normalized long-format table. Each row contains one rating value, along with the rate-set metadata, coverage, term name, and variable/level conditions needed to look it up. This structure makes rating tables easier to store, validate, compare, and audit. For human review, helper functions can reshape a rate set back into familiar one-table-per-variable views.
+
+The calculation order is controlled separately by a rating specification. The spec defines which rating terms are applied, in what order, and whether each term is multiplicative, additive, or continuous. This avoids hard-coding repetitive rating formulas into the rater itself: the same engine can rate different products, coverages, rate sets, or scenarios by changing the tables and spec.
+
+The package supports common rating needs such as by-coverage rating, interactions, optional rounding, trace output, driver or entity averaging, and rate capping. The goal is to provide a lightweight rating kernel that actuaries and technical analysts can use for desktop rating, historical re-rating, proposed-rate testing, implementation validation, and reproducible audit trails.
+
+A normalized, executable rating plan can also improve the handoff between pricing and implementation teams. Instead of maintaining separate “desktop raters” and “live raters” with different table structures and duplicated logic, organizations can use `ratingtables` as a reference implementation, a test oracle, or, where appropriate, part of a broader deployment workflow. The package is deliberately storage-agnostic and front-end agnostic: it focuses on making rating logic explicit, testable, and portable.
+
+## What it does
+
+`ratingtables` provides:
 
 - long-form factor table helpers
 - rating-plan construction
 - validation functions
 - base-R rating functions
+- support for multiplicative, additive, continuous additive, and continuous multiplicative rating terms
+- support for one-way factors and multi-variable interactions
+- explicit `rate_set_key` selection or automatic rate-set selection by state, charter, book segment, and rating date
 - optional normalized trace output
 - trace reshaping helpers
-- optional capping helper
+- optional capping helpers
 - an official base-R demo under `demo/`
-- a personal tidyverse-friendly development script under `scripts/`
+
+The core package functions are implemented in base R, accept ordinary data frames, and avoid prescribing how rating tables are stored, displayed, or deployed.
 
 ## Basic local workflow
 
@@ -25,6 +43,3 @@ devtools::test()       # run tests
 devtools::install()    # install locally
 
 demo("rating_example", package = "ratingtables")
-```
-
-The package functions are written in base R. The script `scripts/dev_rating_example.R` is intentionally ignored by package builds and may use tidyverse packages for table construction.
