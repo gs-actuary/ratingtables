@@ -1,11 +1,21 @@
-.Rproj.user
+# RStudio / Posit local state
+.Rproj.user/
 .Rhistory
 .RData
 .Ruserdata
 
-# R package build/check artifacts
+# R package build/check output
 *.Rcheck/
 *.tar.gz
+.Rbuildignore.bak
 
-# RStudio project/session files
-.Rproj.user/
+# Temporary files
+*.tmp
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# User/session artifacts
+.httr-oauth
