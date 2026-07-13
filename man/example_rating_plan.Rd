@@ -2,18 +2,10 @@
 % Please edit documentation in R/example_rating_plan.R
 \name{example_rating_plan}
 \alias{example_rating_plan}
-\title{Build a Small Example Rating Plan}
+\title{Build a small example rating plan}
 \usage{
 example_rating_plan()
 }
-\value{
-A list with \code{plan} and \code{policies}.
-}
 \description{
-Creates a small two-coverage rating plan and a small policy table. This is
-used by examples, tests, and demos.
-}
-\examples{
-ex <- example_rating_plan()
-rate_policies(ex$policies, ex$plan)
+Build a small example rating plan
 }

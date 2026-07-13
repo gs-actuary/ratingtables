@@ -2,23 +2,10 @@
 % Please edit documentation in R/rate_policies.R
 \name{rate_policies}
 \alias{rate_policies}
-\title{Rate a Policy Data Frame}
+\title{Rate policies and return rated data}
 \usage{
-rate_policies(policies, plan)
-}
-\arguments{
-\item{policies}{Policy-level input data frame.}
-
-\item{plan}{A \code{rating_plan} object.}
-}
-\value{
-The original policy data frame with \verb{indicated_<coverage>} columns
-appended.
+rate_policies(rating_data, plan, validate = TRUE)
 }
 \description{
-Rates every row of a policy data frame for each coverage in a rating plan.
-}
-\examples{
-ex <- example_rating_plan()
-rate_policies(ex$policies, ex$plan)
+Rate policies and return rated data
 }

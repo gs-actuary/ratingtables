@@ -1,37 +1,26 @@
-#' Rate a Policy Data Frame
-#'
-#' Rates every row of a policy data frame for each coverage in a rating plan.
-#'
-#' @param policies Policy-level input data frame.
-#' @param plan A `rating_plan` object.
-#'
-#' @return The original policy data frame with `indicated_<coverage>` columns
-#'   appended.
+#' Rate policies and return rated data
 #' @export
-#'
-#' @examples
-#' ex <- example_rating_plan()
-#' rate_policies(ex$policies, ex$plan)
-rate_policies <- function(policies, plan) {
-  validate_policy_data(policies, plan)
-  policies <- as.data.frame(policies, stringsAsFactors = FALSE)
-  out <- policies
+rate_policies <- function(rating_data, plan, validate = TRUE) {
+  rate_policies_with_trace(rating_data, plan, validate = validate)$rated_data
+}
 
-  for (cov in plan$coverages) {
-    out[[paste0("indicated_", cov)]] <- NA_real_
-  }
-
-  for (row_i in seq_len(nrow(out))) {
-    policy_row <- as.list(out[row_i, , drop = FALSE])
+#' Rate policies and return trace
+#' @export
+rate_policies_with_trace <- function(rating_data, plan, validate = TRUE) {
+  if (!inherits(plan, "rating_plan")) stop("plan must be a rating_plan object.", call. = FALSE)
+  d <- as.data.frame(rating_data, stringsAsFactors = FALSE)
+  if (isTRUE(validate)) validate_policy_data(d, plan)
+  out <- d
+  trace_rows <- list(); k <- 1L
+  for (i in seq_len(nrow(d))) {
+    row <- d[i, , drop = FALSE]
     for (cov in plan$coverages) {
-      out[[paste0("indicated_", cov)]][[row_i]] <- rate_one_policy_coverage(
-        policy_row = policy_row,
-        plan = plan,
-        coverage = cov,
-        return_trace = FALSE
-      )
+      ans <- rate_one_row_one_coverage(row, cov, plan, row_number = i)
+      out[[paste0("indicated_", cov)]][i] <- ans$value
+      trace_rows[[k]] <- ans$trace; k <- k + 1L
     }
   }
-
-  out
+  res <- list(rated_data = out, term_trace = .combine_rows(trace_rows), plan = plan)
+  class(res) <- "rating_result"
+  res
 }

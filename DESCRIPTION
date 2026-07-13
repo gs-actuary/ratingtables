@@ -1,20 +1,11 @@
 Package: ratingtables
-Type: Package
-Title: Lightweight Table-Driven Rating Engine
-Version: 0.0.1
-Authors@R: person("Greg", "Sollenberger", email = "yagreg7@yahoo.com", role = c("aut", "cre"))
-Description: A lightweight, dependency-free rating kernel for table-driven insurance rating. It supports long-form factor tables, specification-driven calculations, validation, optional traces, rate caps, and simple trace reshaping helpers.
+Title: Table-Driven Insurance Rating
+Version: 0.2.0
+Authors@R: person("Greg", "Sollenberger", email = "greg@example.com", role = c("aut", "cre"))
+Description: Lightweight table-driven rating kernel for insurance rating tables, coverage-specific rating specifications, interpolation, entity aggregation, custom calculation functions, and trace output.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-Depends:
-    R (>= 3.6.0)
-Suggests:
-    testthat (>= 3.0.0),
-    tibble,
-    dplyr,
-    tidyr
+Suggests: testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Config/roxygen2/version: 8.0.0
-URL: https://github.com/gs-actuary/ratingtables
-BugReports: https://github.com/gs-actuary/ratingtables/issues

@@ -4,17 +4,16 @@
 \name{ratingtables-package}
 \alias{ratingtables}
 \alias{ratingtables-package}
-\title{ratingtables: Lightweight Table-Driven Rating Engine}
+\title{ratingtables: Table-driven insurance rating}
 \description{
-A dependency-light rating kernel for long-form factor tables, rating specs,
-validation, traces, caps, and trace reshaping helpers.
+Lightweight table-driven rating kernel for insurance rating tables, coverage-specific rating specifications, interpolation, entity aggregation, custom calculation functions, and trace output.
 }
 \author{
-\strong{Maintainer}: Greg Sollenberger \email{yagreg7@yahoo.com}
+\strong{Maintainer}: Greg Sollenberger \email{greg@example.com}
 
 Authors:
 \itemize{
-  \item Greg Sollenberger \email{yagreg7@yahoo.com}
+  \item Greg Sollenberger \email{greg@example.com}
 }
 
 }

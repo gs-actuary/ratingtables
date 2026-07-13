@@ -1,6 +1,3 @@
-^scripts$
-^.*\.zip$
-^\.git$
-^\.gitignore$
+^ratingtables\.Rproj$
 ^\.Rproj\.user$
-^.*\.Rproj$
+^scripts$

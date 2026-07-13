@@ -2,51 +2,39 @@
 % Please edit documentation in R/new_rating_plan.R
 \name{new_rating_plan}
 \alias{new_rating_plan}
-\title{Create a Rating Plan}
+\title{Create a rating plan}
 \usage{
 new_rating_plan(
   factor_table,
   rating_spec,
   coverages,
   use_rate_set_key = FALSE,
-  max_vars = 12L,
+  max_vars = 12,
   policy_id_col = "policy_id",
-  rounding_enabled = TRUE,
-  metadata = list(),
-  validate = TRUE
+  custom_functions = list(),
+  validate = TRUE,
+  metadata = list()
 )
 }
 \arguments{
-\item{factor_table}{Long-form factor table.}
+\item{factor_table}{Normalized long-format factor table.}
 
-\item{rating_spec}{Calculation specification. Required columns are
-\code{term_name}, \code{calculation_type}, and \code{continuous_var}. Optional rounding
-columns are \code{rounding_rule}, \code{rounding_digits}, and \code{rounding_increment}.}
+\item{rating_spec}{Rating specification.}
 
-\item{coverages}{Character vector of coverage names to rate.}
+\item{coverages}{Character vector of coverages to rate.}
 
-\item{use_rate_set_key}{If \code{TRUE}, rate-set selection uses \code{rate_set_key}
-from the policy data. If \code{FALSE}, automatic selection uses state, charter,
-book segment, and rating date.}
+\item{use_rate_set_key}{Whether rating rows select factors using rate_set_key.}
 
-\item{max_vars}{Maximum number of variable/level slot pairs.}
+\item{max_vars}{Maximum number of variable/level slots.}
 
-\item{policy_id_col}{Optional policy identifier column used in trace output.}
+\item{policy_id_col}{Policy identifier column.}
 
-\item{rounding_enabled}{If \code{FALSE}, rating ignores per-step rounding rules.}
+\item{custom_functions}{Named list of user-written R functions.}
 
-\item{metadata}{Optional list of user metadata.}
+\item{validate}{Whether to validate.}
 
-\item{validate}{If \code{TRUE}, validate the plan during construction.}
-}
-\value{
-An object of class \code{rating_plan}.
+\item{metadata}{Optional metadata list.}
 }
 \description{
-Bundles a factor table, rating specification, coverages, and rating options
-into a lightweight \code{rating_plan} object.
-}
-\examples{
-ex <- example_rating_plan()
-print(ex$plan)
+Create a rating plan
 }
