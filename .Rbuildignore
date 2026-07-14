@@ -1,3 +1,5 @@
 ^ratingtables\.Rproj$
 ^\.Rproj\.user$
 ^scripts$
+^\.git$
+^\.gitignore$
