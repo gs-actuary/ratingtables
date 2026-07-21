@@ -14,6 +14,8 @@ The package supports common rating needs such as by-coverage rating, interaction
 
 A normalized, executable rating plan can also improve the handoff between pricing and implementation teams. Instead of maintaining separate “desktop raters” and “live raters” with different table structures and duplicated logic, organizations can use `ratingtables` as a reference implementation, a test oracle, or, where appropriate, part of a broader deployment workflow. The package is deliberately storage-agnostic and front-end agnostic: it focuses on making rating logic explicit, testable, and portable.
 
+`raringtables` is a powerful option for insurance companies and actuarial teams that are trying to modernize their premium raters. Attempts to implement proprietary software can fail or be beset with long delays. These initiatives get sidelined with procurement issues or internal resistance to adopt a new tool. “Low code” GUI environments often have a steep learning curve, and they often lack basic features that are trivial to implement with a flexible coding environment. These are typically inflexible while being no easier to learn than a standard programming language, and they lack the vast online resources of Python, R, or other common languages used in this space. `ratingtables`allows actuarial teams to begin modernizing and standardizing their rating programs immediately without procurement lags and without the need for excessive onboarding with a non-transferable skillset. This premium rater standardization is useful even in cases where an organization is planning to implement a proprietary tool. 
+
 ## What it does
 
 `ratingtables` provides:
