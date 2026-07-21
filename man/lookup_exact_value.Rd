@@ -2,10 +2,24 @@
 % Please edit documentation in R/lookup.R
 \name{lookup_exact_value}
 \alias{lookup_exact_value}
-\title{Exact factor lookup}
+\title{Look up an exact rating-table value}
 \usage{
 lookup_exact_value(row, coverage, plan, term_name)
 }
+\arguments{
+\item{row}{A one-row data frame containing the rating record.}
+
+\item{coverage}{A character string identifying the coverage being rated.}
+
+\item{plan}{A \code{rating_plan} object created by \code{\link[=new_rating_plan]{new_rating_plan()}}.}
+
+\item{term_name}{A character string identifying the rating term to look up.}
+}
+\value{
+A list containing the selected numeric value, the value source,
+the looked-up value, and the matching factor-row identifier.
+}
 \description{
-Exact factor lookup
+Select the single most specific factor-table row that matches a rating
+record, coverage, term, rate-set metadata, and variable-level conditions.
 }

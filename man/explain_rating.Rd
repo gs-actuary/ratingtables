@@ -2,10 +2,24 @@
 % Please edit documentation in R/trace_helpers.R
 \name{explain_rating}
 \alias{explain_rating}
-\title{Explain one rated row}
+\title{Explain a rating calculation}
 \usage{
 explain_rating(rating_result, row_number = 1, coverage = NULL)
 }
+\arguments{
+\item{rating_result}{A \code{rating_result} object returned by
+\code{\link[=rate_policies_with_trace]{rate_policies_with_trace()}}.}
+
+\item{row_number}{An integer identifying the source-data row to explain.}
+
+\item{coverage}{An optional character string identifying the coverage to
+include. If \code{NULL}, all coverages for the row are returned.}
+}
+\value{
+An Excel-style data frame showing the selected rating steps in
+calculation order.
+}
 \description{
-Explain one rated row
+Extract and format the rating trace for one source-data row and, optionally,
+one coverage.
 }

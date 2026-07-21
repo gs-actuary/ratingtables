@@ -2,10 +2,19 @@
 % Please edit documentation in R/trace_helpers.R
 \name{trace_to_excel_style}
 \alias{trace_to_excel_style}
-\title{Reshape trace to an Excel-style step table}
+\title{Reshape rating trace to an Excel-style step table}
 \usage{
 trace_to_excel_style(term_trace)
 }
+\arguments{
+\item{term_trace}{A data frame containing normalized rating trace rows,
+typically from \code{\link[=rate_policies_with_trace]{rate_policies_with_trace()}}.}
+}
+\value{
+A data frame ordered by record, coverage, and step number, containing
+the principal rating inputs, applied values, and before-and-after values.
+}
 \description{
-Reshape trace to an Excel-style step table
+Select and order the principal trace columns to produce a compact,
+human-readable view of the rating calculation.
 }

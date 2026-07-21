@@ -2,7 +2,7 @@
 % Please edit documentation in R/entities.R
 \name{average_entity_factors}
 \alias{average_entity_factors}
-\title{Average entity factors}
+\title{Average entity rating factors}
 \usage{
 average_entity_factors(
   scored_entity_data,
@@ -11,6 +11,24 @@ average_entity_factors(
   output_prefix = "avg_entity_factor_"
 )
 }
+\arguments{
+\item{scored_entity_data}{A data frame containing scored entity records and
+columns named \verb{indicated_<coverage>}.}
+
+\item{group_col}{A character string naming the column that identifies the
+parent or aggregation group.}
+
+\item{coverages}{A character vector of coverage names whose indicated values
+should be averaged.}
+
+\item{output_prefix}{A character string prepended to the generated output
+column names.}
+}
+\value{
+A data frame with one row per parent group and one average entity
+factor column for each requested coverage.
+}
 \description{
-Average entity factors
+Average indicated coverage values across entity records belonging to the
+same parent record.
 }

@@ -70,7 +70,20 @@
   data.frame(row_number = row_number, record_id = record_id, coverage = coverage, step_number = .get_scalar(spec_row, "step_number", NA), term_name = as.character(.get_scalar(spec_row, "term_name", NA)), value_source = as.character(.get_scalar(spec_row, "value_source", "factor_lookup")), calculation_type = as.character(.get_scalar(spec_row, "calculation_type", NA)), input_var = .first_nonblank(step_value$input_var, .get_scalar(spec_row, "input_var", NA)), input_value = if (!is.null(applied$input_value)) applied$input_value else NA_real_, looked_up_value = if (!is.null(step_value$looked_up_value)) step_value$looked_up_value else ifelse(step_value$value_source %in% c("factor_lookup", "interpolated_lookup"), step_value$value, NA_real_), applied_value = applied$applied_value, value_before_step = applied$before, value_after_step = applied$after, factor_row_id = if (!is.null(step_value$factor_row_id)) step_value$factor_row_id else NA, lower_level = if (!is.null(step_value$lower_level)) step_value$lower_level else NA, upper_level = if (!is.null(step_value$upper_level)) step_value$upper_level else NA, lower_value = if (!is.null(step_value$lower_value)) step_value$lower_value else NA, upper_value = if (!is.null(step_value$upper_value)) step_value$upper_value else NA, interpolation_weight = if (!is.null(step_value$interpolation_weight)) step_value$interpolation_weight else NA_real_, custom_function = if (!is.null(step_value$custom_function)) step_value$custom_function else NA_character_, stringsAsFactors = FALSE)
 }
 
-#' Rate one row and one coverage
+#' Rate one record for one coverage
+#'
+#' Execute the applicable rating specification one step at a time for a single
+#' record and coverage.
+#'
+#' @param row A one-row data frame containing the rating record.
+#' @param coverage A character string identifying the coverage to rate.
+#' @param plan A `rating_plan` object created by [new_rating_plan()].
+#' @param row_number An integer identifying the row within the source rating
+#'   data. This value is included in the trace output.
+#'
+#' @return A list with two elements: `value`, containing the final indicated
+#'   value, and `trace`, containing one trace row per rating-specification step.
+#'
 #' @export
 rate_one_row_one_coverage <- function(row, coverage, plan, row_number = 1) {
   if (!inherits(plan, "rating_plan")) stop("plan must be a rating_plan object.", call. = FALSE)

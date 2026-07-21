@@ -2,7 +2,7 @@
 % Please edit documentation in R/lookup.R
 \name{lookup_factor_value}
 \alias{lookup_factor_value}
-\title{Lookup a factor value by source}
+\title{Look up a factor value by source}
 \usage{
 lookup_factor_value(
   row,
@@ -14,6 +14,29 @@ lookup_factor_value(
   bounds = "error"
 )
 }
+\arguments{
+\item{row}{A one-row data frame containing the rating record.}
+
+\item{coverage}{A character string identifying the coverage being rated.}
+
+\item{plan}{A \code{rating_plan} object created by \code{\link[=new_rating_plan]{new_rating_plan()}}.}
+
+\item{term_name}{A character string identifying the rating term to look up.}
+
+\item{value_source}{A character string specifying the lookup method.
+Supported values are \code{"factor_lookup"} and \code{"interpolated_lookup"}.}
+
+\item{lookup_var}{An optional character string naming the interpolation
+variable. Required for \code{value_source = "interpolated_lookup"}.}
+
+\item{bounds}{A character string controlling out-of-range interpolation.
+Supported values are \code{"error"}, \code{"clamp"}, and \code{"extrapolate"}.}
+}
+\value{
+A list containing the selected or interpolated rating value and
+associated trace information.
+}
 \description{
-Lookup a factor value by source
+Dispatch a rating-table lookup to either exact matching or interpolated
+lookup according to \code{value_source}.
 }

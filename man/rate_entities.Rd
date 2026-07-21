@@ -2,10 +2,22 @@
 % Please edit documentation in R/entities.R
 \name{rate_entities}
 \alias{rate_entities}
-\title{Rate child/entity rows}
+\title{Rate child or entity records}
 \usage{
 rate_entities(entity_data, plan, validate = TRUE)
 }
+\arguments{
+\item{entity_data}{A data frame containing one row per entity to be rated.}
+
+\item{plan}{A \code{rating_plan} object created by \code{\link[=new_rating_plan]{new_rating_plan()}}.}
+
+\item{validate}{Logical. If \code{TRUE}, validate the entity data before rating.}
+}
+\value{
+A \code{rating_result} object containing \code{rated_data}, \code{term_trace},
+and the rating plan.
+}
 \description{
-Rate child/entity rows
+Apply a rating plan to entity-level records such as drivers, vehicles,
+boats, or scheduled items, returning both rated values and trace output.
 }

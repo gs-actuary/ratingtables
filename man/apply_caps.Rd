@@ -2,7 +2,7 @@
 % Please edit documentation in R/misc_helpers.R
 \name{apply_caps}
 \alias{apply_caps}
-\title{Apply rate caps to indicated premiums}
+\title{Apply rate-change caps to indicated premiums}
 \usage{
 apply_caps(
   rating_data,
@@ -13,6 +13,30 @@ apply_caps(
   max_decrease = NULL
 )
 }
+\arguments{
+\item{rating_data}{A data frame containing indicated premium columns named
+\verb{indicated_<coverage>}.}
+
+\item{prior_data}{A data frame containing prior premium columns named
+\verb{prior_<coverage>}.}
+
+\item{by}{A character vector naming the column or columns used to join
+\code{rating_data} and \code{prior_data}.}
+
+\item{coverages}{A character vector naming the coverages to cap.}
+
+\item{max_increase}{An optional nonnegative numeric value giving the maximum
+permitted proportional increase. For example, \code{0.10} permits a 10 percent
+increase.}
+
+\item{max_decrease}{An optional numeric value giving the maximum permitted
+proportional decrease. Its absolute value is used.}
+}
+\value{
+A merged data frame with one \verb{capped_<coverage>} column for each
+requested coverage.
+}
 \description{
-Apply rate caps to indicated premiums
+Limit indicated premiums so that they do not increase or decrease by more
+than specified percentages relative to prior premiums.
 }

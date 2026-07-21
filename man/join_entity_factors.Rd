@@ -2,10 +2,23 @@
 % Please edit documentation in R/entities.R
 \name{join_entity_factors}
 \alias{join_entity_factors}
-\title{Backward-compatible join wrapper}
+\title{Join entity factors to rating data}
 \usage{
 join_entity_factors(rating_data, entity_factor_data, by)
 }
+\arguments{
+\item{rating_data}{A data frame containing the parent-level rating records.}
+
+\item{entity_factor_data}{A data frame containing aggregated entity factors.}
+
+\item{by}{A character vector naming the column or columns used to join the
+two data frames.}
+}
+\value{
+A data frame containing all rows from \code{rating_data} with matching
+entity-factor columns appended.
+}
 \description{
-Backward-compatible join wrapper
+Backward-compatible wrapper around \code{\link[=join_entity_values]{join_entity_values()}} for joining
+aggregated entity factors to parent-level rating data.
 }

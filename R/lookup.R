@@ -36,7 +36,19 @@
   TRUE
 }
 
-#' Exact factor lookup
+#' Look up an exact rating-table value
+#'
+#' Select the single most specific factor-table row that matches a rating
+#' record, coverage, term, rate-set metadata, and variable-level conditions.
+#'
+#' @param row A one-row data frame containing the rating record.
+#' @param coverage A character string identifying the coverage being rated.
+#' @param plan A `rating_plan` object created by [new_rating_plan()].
+#' @param term_name A character string identifying the rating term to look up.
+#'
+#' @return A list containing the selected numeric value, the value source,
+#'   the looked-up value, and the matching factor-row identifier.
+#'
 #' @export
 lookup_exact_value <- function(row, coverage, plan, term_name) {
   if (!inherits(plan, "rating_plan")) stop("plan must be a rating_plan object.", call. = FALSE)
@@ -58,7 +70,25 @@ lookup_exact_value <- function(row, coverage, plan, term_name) {
   NA
 }
 
-#' Interpolated factor lookup
+#' Look up an interpolated rating-table value
+#'
+#' Select the applicable interpolation curve for a rating record and calculate
+#' a linearly interpolated value from the surrounding table points.
+#'
+#' @param row A one-row data frame containing the rating record.
+#' @param coverage A character string identifying the coverage being rated.
+#' @param plan A `rating_plan` object created by [new_rating_plan()].
+#' @param term_name A character string identifying the rating term to look up.
+#' @param lookup_var A character string naming the numeric input variable used
+#'   as the interpolation axis.
+#' @param bounds A character string controlling values outside the available
+#'   interpolation range. Supported values are `"error"`, `"clamp"`, and
+#'   `"extrapolate"`.
+#'
+#' @return A list containing the interpolated value and supporting trace
+#'   information, including the lower and upper levels, values, interpolation
+#'   weight, and factor-row identifiers.
+#'
 #' @export
 lookup_interpolated_value <- function(row, coverage, plan, term_name, lookup_var, bounds = "error") {
   if (!inherits(plan, "rating_plan")) stop("plan must be a rating_plan object.", call. = FALSE)
@@ -95,7 +125,25 @@ lookup_interpolated_value <- function(row, coverage, plan, term_name, lookup_var
   list(value = val, value_source = "interpolated_lookup", looked_up_value = val, input_var = lookup_var, input_value = x, lower_level = xs[lower_idx], upper_level = xs[upper_idx], lower_value = ys[lower_idx], upper_value = ys[upper_idx], interpolation_weight = w, lower_factor_row_id = cand$factor_row_id[[lower_idx]], upper_factor_row_id = cand$factor_row_id[[upper_idx]])
 }
 
-#' Lookup a factor value by source
+#' Look up a factor value by source
+#'
+#' Dispatch a rating-table lookup to either exact matching or interpolated
+#' lookup according to `value_source`.
+#'
+#' @param row A one-row data frame containing the rating record.
+#' @param coverage A character string identifying the coverage being rated.
+#' @param plan A `rating_plan` object created by [new_rating_plan()].
+#' @param term_name A character string identifying the rating term to look up.
+#' @param value_source A character string specifying the lookup method.
+#'   Supported values are `"factor_lookup"` and `"interpolated_lookup"`.
+#' @param lookup_var An optional character string naming the interpolation
+#'   variable. Required for `value_source = "interpolated_lookup"`.
+#' @param bounds A character string controlling out-of-range interpolation.
+#'   Supported values are `"error"`, `"clamp"`, and `"extrapolate"`.
+#'
+#' @return A list containing the selected or interpolated rating value and
+#'   associated trace information.
+#'
 #' @export
 lookup_factor_value <- function(row, coverage, plan, term_name, value_source = "factor_lookup", lookup_var = NULL, bounds = "error") {
   if (value_source == "factor_lookup") return(lookup_exact_value(row, coverage, plan, term_name))
@@ -103,7 +151,24 @@ lookup_factor_value <- function(row, coverage, plan, term_name, value_source = "
   stop("lookup_factor_value supports factor_lookup and interpolated_lookup only.", call. = FALSE)
 }
 
-#' Compatibility wrapper for exact term lookup
+#' Look up an exact rating term value
+#'
+#' Compatibility wrapper around [lookup_exact_value()]. By default, it returns
+#' only the numeric factor value.
+#'
+#' @param row A one-row data frame containing the rating record.
+#' @param coverage A character string identifying the coverage being rated.
+#' @param plan A `rating_plan` object created by [new_rating_plan()].
+#' @param term_name A character string identifying the rating term to look up.
+#' @param return_match Logical. If `TRUE`, return the complete lookup result;
+#'   otherwise return only its numeric value.
+#' @param ... Additional arguments accepted for backward compatibility.
+#'   They are currently ignored.
+#'
+#' @return If `return_match = FALSE`, a numeric rating value. If
+#'   `return_match = TRUE`, a list containing the value and matching-row
+#'   information.
+#'
 #' @export
 lookup_term_value <- function(row, coverage, plan, term_name, return_match = FALSE, ...) {
   ans <- lookup_exact_value(row, coverage, plan, term_name)

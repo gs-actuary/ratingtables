@@ -2,10 +2,23 @@
 % Please edit documentation in R/trace_helpers.R
 \name{append_rating_factors}
 \alias{append_rating_factors}
-\title{Append wide rating factors to rated data}
+\title{Append rating factors to rated data}
 \usage{
 append_rating_factors(rated_data, term_trace, by = "row_number")
 }
+\arguments{
+\item{rated_data}{A data frame containing rated policy or entity records.}
+
+\item{term_trace}{A data frame containing normalized rating trace rows.}
+
+\item{by}{A character vector naming the identifying column or columns used
+to join the wide trace values to \code{rated_data}.}
+}
+\value{
+A data frame containing the rated records with wide rating-step
+columns appended.
+}
 \description{
-Append wide rating factors to rated data
+Reshape normalized trace rows to wide rating-factor columns and join them
+back to the rated records.
 }

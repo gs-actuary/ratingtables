@@ -2,7 +2,7 @@
 % Please edit documentation in R/entities.R
 \name{aggregate_entity_values}
 \alias{aggregate_entity_values}
-\title{Aggregate rated entity values to parent/group rows}
+\title{Aggregate rated entity values to parent records}
 \usage{
 aggregate_entity_values(
   rated_entity_data,
@@ -14,6 +14,35 @@ aggregate_entity_values(
   output_prefix = NULL
 )
 }
+\arguments{
+\item{rated_entity_data}{A data frame containing rated entity records.}
+
+\item{group_col}{A character string naming the column that identifies the
+parent or aggregation group.}
+
+\item{value_cols}{A character vector naming the numeric columns to
+aggregate.}
+
+\item{aggregation}{A character string specifying the aggregation method.
+Supported values are \code{"sum"}, \code{"mean"}, \code{"min"}, \code{"max"}, \code{"count"},
+and \code{"weighted_mean"}.}
+
+\item{weight_col}{An optional character string naming the weight column.
+Required when \code{aggregation = "weighted_mean"}.}
+
+\item{output_names}{An optional character vector giving the names of the
+aggregated output columns. It must have the same length as \code{value_cols}.}
+
+\item{output_prefix}{An optional character string prepended to generated
+output names when \code{output_names} is not supplied. By default, the
+aggregation name followed by an underscore is used.}
+}
+\value{
+A data frame with one row per unique value of \code{group_col} and one
+aggregated column for each entry in \code{value_cols}.
+}
 \description{
-Aggregate rated entity values to parent/group rows
+Aggregate one or more numeric values from entity-level records to a parent
+or group level. This can be used, for example, to average driver factors or
+sum premiums for boats or scheduled items.
 }

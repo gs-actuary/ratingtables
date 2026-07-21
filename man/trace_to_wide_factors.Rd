@@ -2,13 +2,25 @@
 % Please edit documentation in R/trace_helpers.R
 \name{trace_to_wide_factors}
 \alias{trace_to_wide_factors}
-\title{Reshape trace to wide applied values}
+\title{Reshape rating trace to wide factor columns}
 \usage{
 trace_to_wide_factors(
   term_trace,
   id_cols = c("row_number", "record_id", "coverage")
 )
 }
+\arguments{
+\item{term_trace}{A data frame containing normalized rating trace rows,
+typically from \code{\link[=rate_policies_with_trace]{rate_policies_with_trace()}}.}
+
+\item{id_cols}{A character vector naming the columns that uniquely identify
+each output row.}
+}
+\value{
+A wide data frame containing the identifying columns and one
+\verb{step_<number>_<term>} column for each rating step.
+}
 \description{
-Reshape trace to wide applied values
+Convert normalized trace rows into one row per rating record and coverage,
+with a separate column for each rating step.
 }

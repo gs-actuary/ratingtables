@@ -2,10 +2,27 @@
 % Please edit documentation in R/rate_policies.R
 \name{rate_policies_with_trace}
 \alias{rate_policies_with_trace}
-\title{Rate policies and return trace}
+\title{Rate policy records with trace output}
 \usage{
 rate_policies_with_trace(rating_data, plan, validate = TRUE)
 }
+\arguments{
+\item{rating_data}{A data frame containing one row per policy or rating
+record.}
+
+\item{plan}{A \code{rating_plan} object created by \code{\link[=new_rating_plan]{new_rating_plan()}}.}
+
+\item{validate}{Logical. If \code{TRUE}, validate \code{rating_data} before rating.}
+}
+\value{
+A \code{rating_result} object containing:
+\describe{
+\item{rated_data}{The original records with indicated coverage values.}
+\item{term_trace}{Step-by-step rating trace rows.}
+\item{plan}{The rating plan used for the calculation.}
+}
+}
 \description{
-Rate policies and return trace
+Apply a rating plan to every row and coverage in a policy-level data frame
+and retain step-by-step trace information.
 }

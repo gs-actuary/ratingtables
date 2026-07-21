@@ -2,10 +2,22 @@
 % Please edit documentation in R/entities.R
 \name{score_entity_rows}
 \alias{score_entity_rows}
-\title{Backward-compatible entity scoring wrapper}
+\title{Score child or entity records}
 \usage{
 score_entity_rows(entity_data, plan, validate = TRUE)
 }
+\arguments{
+\item{entity_data}{A data frame containing one row per entity to be rated.}
+
+\item{plan}{A \code{rating_plan} object created by \code{\link[=new_rating_plan]{new_rating_plan()}}.}
+
+\item{validate}{Logical. If \code{TRUE}, validate the entity data before rating.}
+}
+\value{
+A data frame containing the original entity data and calculated
+indicated values.
+}
 \description{
-Backward-compatible entity scoring wrapper
+Backward-compatible wrapper around \code{\link[=rate_entities]{rate_entities()}} that returns only
+the rated entity data and omits the trace and plan components.
 }

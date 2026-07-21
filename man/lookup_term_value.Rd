@@ -2,10 +2,31 @@
 % Please edit documentation in R/lookup.R
 \name{lookup_term_value}
 \alias{lookup_term_value}
-\title{Compatibility wrapper for exact term lookup}
+\title{Look up an exact rating term value}
 \usage{
 lookup_term_value(row, coverage, plan, term_name, return_match = FALSE, ...)
 }
+\arguments{
+\item{row}{A one-row data frame containing the rating record.}
+
+\item{coverage}{A character string identifying the coverage being rated.}
+
+\item{plan}{A \code{rating_plan} object created by \code{\link[=new_rating_plan]{new_rating_plan()}}.}
+
+\item{term_name}{A character string identifying the rating term to look up.}
+
+\item{return_match}{Logical. If \code{TRUE}, return the complete lookup result;
+otherwise return only its numeric value.}
+
+\item{...}{Additional arguments accepted for backward compatibility.
+They are currently ignored.}
+}
+\value{
+If \code{return_match = FALSE}, a numeric rating value. If
+\code{return_match = TRUE}, a list containing the value and matching-row
+information.
+}
 \description{
-Compatibility wrapper for exact term lookup
+Compatibility wrapper around \code{\link[=lookup_exact_value]{lookup_exact_value()}}. By default, it returns
+only the numeric factor value.
 }

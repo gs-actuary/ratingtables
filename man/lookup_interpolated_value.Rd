@@ -2,7 +2,7 @@
 % Please edit documentation in R/lookup.R
 \name{lookup_interpolated_value}
 \alias{lookup_interpolated_value}
-\title{Interpolated factor lookup}
+\title{Look up an interpolated rating-table value}
 \usage{
 lookup_interpolated_value(
   row,
@@ -13,6 +13,28 @@ lookup_interpolated_value(
   bounds = "error"
 )
 }
+\arguments{
+\item{row}{A one-row data frame containing the rating record.}
+
+\item{coverage}{A character string identifying the coverage being rated.}
+
+\item{plan}{A \code{rating_plan} object created by \code{\link[=new_rating_plan]{new_rating_plan()}}.}
+
+\item{term_name}{A character string identifying the rating term to look up.}
+
+\item{lookup_var}{A character string naming the numeric input variable used
+as the interpolation axis.}
+
+\item{bounds}{A character string controlling values outside the available
+interpolation range. Supported values are \code{"error"}, \code{"clamp"}, and
+\code{"extrapolate"}.}
+}
+\value{
+A list containing the interpolated value and supporting trace
+information, including the lower and upper levels, values, interpolation
+weight, and factor-row identifiers.
+}
 \description{
-Interpolated factor lookup
+Select the applicable interpolation curve for a rating record and calculate
+a linearly interpolated value from the surrounding table points.
 }

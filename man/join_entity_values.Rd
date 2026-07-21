@@ -2,10 +2,23 @@
 % Please edit documentation in R/entities.R
 \name{join_entity_values}
 \alias{join_entity_values}
-\title{Join aggregated entity values back to parent rows}
+\title{Join aggregated entity values to parent records}
 \usage{
 join_entity_values(parent_data, entity_values, by)
 }
+\arguments{
+\item{parent_data}{A data frame containing parent-level records.}
+
+\item{entity_values}{A data frame containing aggregated entity values.}
+
+\item{by}{A character vector naming the column or columns used to join the
+two data frames.}
+}
+\value{
+A data frame containing all rows from \code{parent_data} with matching
+columns from \code{entity_values}.
+}
 \description{
-Join aggregated entity values back to parent rows
+Left-join aggregated entity-level values back to the parent-level rating
+data.
 }

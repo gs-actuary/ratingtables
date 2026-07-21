@@ -6,6 +6,14 @@
 \usage{
 rate_set_to_tables(factor_table)
 }
+\arguments{
+\item{factor_table}{A normalized long-form factor table.}
+}
+\value{
+A named list of data frames containing review-friendly subsets of
+the supplied factor table.
+}
 \description{
-Split a rate set into review-friendly tables
+Separate a normalized long-form factor table into a collection of smaller
+tables suitable for human review.
 }

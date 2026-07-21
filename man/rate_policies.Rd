@@ -2,10 +2,23 @@
 % Please edit documentation in R/rate_policies.R
 \name{rate_policies}
 \alias{rate_policies}
-\title{Rate policies and return rated data}
+\title{Rate policy records}
 \usage{
 rate_policies(rating_data, plan, validate = TRUE)
 }
+\arguments{
+\item{rating_data}{A data frame containing one row per policy or rating
+record.}
+
+\item{plan}{A \code{rating_plan} object created by \code{\link[=new_rating_plan]{new_rating_plan()}}.}
+
+\item{validate}{Logical. If \code{TRUE}, validate \code{rating_data} before rating.}
+}
+\value{
+A data frame containing the original rating data plus one
+\verb{indicated_<coverage>} column for each coverage in the rating plan.
+}
 \description{
-Rate policies and return rated data
+Apply a rating plan to every row and coverage in a policy-level data frame,
+returning only the resulting rated data.
 }

@@ -2,10 +2,25 @@
 % Please edit documentation in R/rate_core.R
 \name{rate_one_row_one_coverage}
 \alias{rate_one_row_one_coverage}
-\title{Rate one row and one coverage}
+\title{Rate one record for one coverage}
 \usage{
 rate_one_row_one_coverage(row, coverage, plan, row_number = 1)
 }
+\arguments{
+\item{row}{A one-row data frame containing the rating record.}
+
+\item{coverage}{A character string identifying the coverage to rate.}
+
+\item{plan}{A \code{rating_plan} object created by \code{\link[=new_rating_plan]{new_rating_plan()}}.}
+
+\item{row_number}{An integer identifying the row within the source rating
+data. This value is included in the trace output.}
+}
+\value{
+A list with two elements: \code{value}, containing the final indicated
+value, and \code{trace}, containing one trace row per rating-specification step.
+}
 \description{
-Rate one row and one coverage
+Execute the applicable rating specification one step at a time for a single
+record and coverage.
 }
