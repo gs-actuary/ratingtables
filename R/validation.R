@@ -10,7 +10,18 @@ validate_factor_table <- function(factor_table, max_vars = 12) {
   invisible(TRUE)
 }
 
-#' Find duplicate factor rows
+#' Find duplicate factor-table rows
+#'
+#' Identify factor-table rows that have duplicate lookup keys.
+#'
+#' @param factor_table A normalized long-form factor table.
+#' @param max_vars Maximum number of variable-level slot pairs to inspect.
+#' @param ... Additional arguments accepted for backward compatibility.
+#'
+#' @return A data frame containing factor-table rows with duplicated lookup
+#'   keys. An empty data frame is returned when no duplicates are found.
+#'
+#' @export
 find_duplicate_factors <- function(factor_table, max_vars = 12, ...) {
   ft <- ensure_slot_columns(as.data.frame(factor_table, stringsAsFactors = FALSE), max_vars)
   slots <- .slot_names(max_vars)

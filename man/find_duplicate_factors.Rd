@@ -2,10 +2,21 @@
 % Please edit documentation in R/validation.R
 \name{find_duplicate_factors}
 \alias{find_duplicate_factors}
-\title{Find duplicate factor rows}
+\title{Find duplicate factor-table rows}
 \usage{
 find_duplicate_factors(factor_table, max_vars = 12, ...)
 }
+\arguments{
+\item{factor_table}{A normalized long-form factor table.}
+
+\item{max_vars}{Maximum number of variable-level slot pairs to inspect.}
+
+\item{...}{Additional arguments accepted for backward compatibility.}
+}
+\value{
+A data frame containing factor-table rows with duplicated lookup
+keys. An empty data frame is returned when no duplicates are found.
+}
 \description{
-Find duplicate factor rows
+Identify factor-table rows that have duplicate lookup keys.
 }
