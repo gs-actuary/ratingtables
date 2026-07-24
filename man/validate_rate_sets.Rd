@@ -12,3 +12,12 @@ validate_rate_sets(factor_table)
 \description{
 Validate rate set fields
 }
+\examples{
+ex <- example_rating_plan()
+
+isTRUE(
+  validate_rate_sets(
+    ex$plan$factor_table
+  )
+)
+}

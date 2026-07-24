@@ -22,3 +22,20 @@ columns from \code{entity_values}.
 Left-join aggregated entity-level values back to the parent-level rating
 data.
 }
+\examples{
+policies <- data.frame(
+  policy_id = c("P1", "P2"),
+  base_premium = c(100, 120)
+)
+
+driver_values <- data.frame(
+  policy_id = c("P1", "P2"),
+  average_driver_factor = c(1.05, 0.95)
+)
+
+join_entity_values(
+  parent_data = policies,
+  entity_values = driver_values,
+  by = "policy_id"
+)
+}

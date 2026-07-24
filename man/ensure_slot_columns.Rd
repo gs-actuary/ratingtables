@@ -14,3 +14,16 @@ ensure_slot_columns(x, max_vars = 12)
 \description{
 Ensure variable/level slot columns exist
 }
+\examples{
+factors <- data.frame(
+  term_name = "territory",
+  term_value = 1.10
+)
+
+factors <- ensure_slot_columns(
+  factors,
+  max_vars = 2
+)
+
+factors
+}

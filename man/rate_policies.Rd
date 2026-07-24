@@ -22,3 +22,14 @@ A data frame containing the original rating data plus one
 Apply a rating plan to every row and coverage in a policy-level data frame,
 returning only the resulting rated data.
 }
+\examples{
+ex <- example_rating_plan()
+
+rated <- rate_policies(
+  rating_data = ex$policies,
+  plan = ex$plan
+)
+
+rated
+
+}

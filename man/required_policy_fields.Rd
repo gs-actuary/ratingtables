@@ -12,3 +12,8 @@ required_policy_fields(plan)
 \description{
 Required policy fields for a plan
 }
+\examples{
+ex <- example_rating_plan()
+
+required_policy_fields(ex$plan)
+}

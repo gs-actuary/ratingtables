@@ -14,3 +14,13 @@ validate_factor_table(factor_table, max_vars = 12)
 \description{
 Validate a factor table
 }
+\examples{
+ex <- example_rating_plan()
+
+isTRUE(
+  validate_factor_table(
+    ex$plan$factor_table,
+    max_vars = ex$plan$max_vars
+  )
+)
+}

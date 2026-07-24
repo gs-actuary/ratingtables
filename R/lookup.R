@@ -48,7 +48,19 @@
 #'
 #' @return A list containing the selected numeric value, the value source,
 #'   the looked-up value, and the matching factor-row identifier.
+#' @examples
+#' ex <- example_rating_plan()
+#' policy <- ex$policies[1, , drop = FALSE]
 #'
+#' answer <- lookup_exact_value(
+#'   row = policy,
+#'   coverage = "BI",
+#'   plan = ex$plan,
+#'   term_name = "territory"
+#' )
+#'
+#' answer$value
+#' answer$factor_row_id
 #' @export
 lookup_exact_value <- function(row, coverage, plan, term_name) {
   if (!inherits(plan, "rating_plan")) stop("plan must be a rating_plan object.", call. = FALSE)
@@ -88,7 +100,56 @@ lookup_exact_value <- function(row, coverage, plan, term_name) {
 #' @return A list containing the interpolated value and supporting trace
 #'   information, including the lower and upper levels, values, interpolation
 #'   weight, and factor-row identifiers.
+#' @examples
+#' factor_table <- data.frame(
+#'   state = c("IL", "IL"),
+#'   charter = c("STD", "STD"),
+#'   book_segment = c("new", "new"),
+#'   rate_eff_date = as.Date(c("2025-01-01", "2025-01-01")),
+#'   rate_exp_date = as.Date(c("2025-12-31", "2025-12-31")),
+#'   coverage = c("BI", "BI"),
+#'   term_name = c("limit_factor", "limit_factor"),
+#'   term_value = c(1.00, 1.20),
+#'   variable1 = c("limit_value", "limit_value"),
+#'   level1 = c("100", "200"),
+#'   stringsAsFactors = FALSE
+#' )
 #'
+#' rating_spec <- data.frame(
+#'   step_number = 1,
+#'   term_name = "limit_factor",
+#'   value_source = "interpolated_lookup",
+#'   calculation_type = "multiplicative",
+#'   lookup_var = "limit_value",
+#'   stringsAsFactors = FALSE
+#' )
+#'
+#' plan <- new_rating_plan(
+#'   factor_table = factor_table,
+#'   rating_spec = rating_spec,
+#'   coverages = "BI"
+#' )
+#'
+#' policy <- data.frame(
+#'   policy_id = "P1",
+#'   state = "IL",
+#'   charter = "STD",
+#'   book_segment = "new",
+#'   rating_date = as.Date("2025-06-01"),
+#'   limit_value = 150,
+#'   stringsAsFactors = FALSE
+#' )
+#'
+#' answer <- lookup_interpolated_value(
+#'   row = policy,
+#'   coverage = "BI",
+#'   plan = plan,
+#'   term_name = "limit_factor",
+#'   lookup_var = "limit_value"
+#' )
+#'
+#' answer$value
+#' answer$interpolation_weight
 #' @export
 lookup_interpolated_value <- function(row, coverage, plan, term_name, lookup_var, bounds = "error") {
   if (!inherits(plan, "rating_plan")) stop("plan must be a rating_plan object.", call. = FALSE)
@@ -143,7 +204,19 @@ lookup_interpolated_value <- function(row, coverage, plan, term_name, lookup_var
 #'
 #' @return A list containing the selected or interpolated rating value and
 #'   associated trace information.
+#' @examples
+#' ex <- example_rating_plan()
+#' policy <- ex$policies[1, , drop = FALSE]
 #'
+#' answer <- lookup_factor_value(
+#'   row = policy,
+#'   coverage = "BI",
+#'   plan = ex$plan,
+#'   term_name = "territory",
+#'   value_source = "factor_lookup"
+#' )
+#'
+#' answer
 #' @export
 lookup_factor_value <- function(row, coverage, plan, term_name, value_source = "factor_lookup", lookup_var = NULL, bounds = "error") {
   if (value_source == "factor_lookup") return(lookup_exact_value(row, coverage, plan, term_name))
@@ -168,7 +241,24 @@ lookup_factor_value <- function(row, coverage, plan, term_name, value_source = "
 #' @return If `return_match = FALSE`, a numeric rating value. If
 #'   `return_match = TRUE`, a list containing the value and matching-row
 #'   information.
+#' @examples
+#' ex <- example_rating_plan()
+#' policy <- ex$policies[1, , drop = FALSE]
 #'
+#' lookup_term_value(
+#'   row = policy,
+#'   coverage = "BI",
+#'   plan = ex$plan,
+#'   term_name = "territory"
+#' )
+#'
+#' lookup_term_value(
+#'   row = policy,
+#'   coverage = "BI",
+#'   plan = ex$plan,
+#'   term_name = "territory",
+#'   return_match = TRUE
+#' )
 #' @export
 lookup_term_value <- function(row, coverage, plan, term_name, return_match = FALSE, ...) {
   ans <- lookup_exact_value(row, coverage, plan, term_name)

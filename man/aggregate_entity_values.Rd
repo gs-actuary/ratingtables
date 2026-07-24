@@ -46,3 +46,17 @@ Aggregate one or more numeric values from entity-level records to a parent
 or group level. This can be used, for example, to average driver factors or
 sum premiums for boats or scheduled items.
 }
+\examples{
+rated_drivers <- data.frame(
+  policy_id = c("P1", "P1", "P2"),
+  indicated_BI = c(1.10, 0.90, 1.05)
+)
+
+aggregate_entity_values(
+  rated_entity_data = rated_drivers,
+  group_col = "policy_id",
+  value_cols = "indicated_BI",
+  aggregation = "mean",
+  output_names = "average_BI"
+)
+}

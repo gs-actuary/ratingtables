@@ -21,3 +21,17 @@ indicated values.
 Backward-compatible wrapper around \code{\link[=rate_entities]{rate_entities()}} that returns only
 the rated entity data and omits the trace and plan components.
 }
+\examples{
+ex <- example_rating_plan()
+
+drivers <- ex$policies
+drivers$household_id <- "H1"
+drivers$policy_id <- c("D1", "D2")
+
+scored <- score_entity_rows(
+  entity_data = drivers,
+  plan = ex$plan
+)
+
+scored
+}

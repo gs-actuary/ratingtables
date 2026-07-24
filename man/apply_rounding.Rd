@@ -18,3 +18,17 @@ apply_rounding(x, rule = NA, digits = NA, increment = NA)
 \description{
 Apply a rounding rule
 }
+\examples{
+premiums <- c(101.234, 105.678)
+
+apply_rounding(
+  premiums,
+  rule = "nearest_cent"
+)
+
+apply_rounding(
+  premiums,
+  rule = "nearest_increment",
+  increment = 5
+)
+}

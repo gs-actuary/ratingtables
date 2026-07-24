@@ -10,7 +10,17 @@
 #'
 #' @return A wide data frame containing the identifying columns and one
 #'   `step_<number>_<term>` column for each rating step.
+#' @examples
+#' ex <- example_rating_plan()
 #'
+#' result <- rate_policies_with_trace(
+#'   ex$policies,
+#'   ex$plan
+#' )
+#'
+#' trace_to_wide_factors(
+#'   result$term_trace
+#' )
 #' @export
 trace_to_wide_factors <- function(term_trace, id_cols = c("row_number", "record_id", "coverage")) {
   tr <- as.data.frame(term_trace, stringsAsFactors = FALSE)
@@ -36,7 +46,17 @@ trace_to_wide_factors <- function(term_trace, id_cols = c("row_number", "record_
 #'
 #' @return A data frame ordered by record, coverage, and step number, containing
 #'   the principal rating inputs, applied values, and before-and-after values.
+#' @examples
+#' ex <- example_rating_plan()
 #'
+#' result <- rate_policies_with_trace(
+#'   ex$policies,
+#'   ex$plan
+#' )
+#'
+#' trace_to_excel_style(
+#'   result$term_trace
+#' )
 #' @export
 trace_to_excel_style <- function(term_trace) {
   tr <- as.data.frame(term_trace, stringsAsFactors = FALSE)
@@ -57,7 +77,19 @@ trace_to_excel_style <- function(term_trace) {
 #'
 #' @return A data frame containing the rated records with wide rating-step
 #'   columns appended.
+#' @examples
+#' ex <- example_rating_plan()
 #'
+#' result <- rate_policies_with_trace(
+#'   ex$policies,
+#'   ex$plan
+#' )
+#'
+#' append_rating_factors(
+#'   rated_data = result$rated_data,
+#'   term_trace = result$term_trace,
+#'   by = "row_number"
+#' )
 #' @export
 append_rating_factors <- function(rated_data, term_trace, by = "row_number") {
   d <- as.data.frame(rated_data, stringsAsFactors = FALSE); d$row_number <- seq_len(nrow(d))
@@ -77,7 +109,19 @@ append_rating_factors <- function(rated_data, term_trace, by = "row_number") {
 #'
 #' @return An Excel-style data frame showing the selected rating steps in
 #'   calculation order.
+#' @examples
+#' ex <- example_rating_plan()
 #'
+#' result <- rate_policies_with_trace(
+#'   ex$policies,
+#'   ex$plan
+#' )
+#'
+#' explain_rating(
+#'   rating_result = result,
+#'   row_number = 1,
+#'   coverage = "BI"
+#' )
 #' @export
 explain_rating <- function(rating_result, row_number = 1, coverage = NULL) {
   tr <- rating_result$term_trace

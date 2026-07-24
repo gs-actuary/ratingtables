@@ -23,3 +23,17 @@ calculation order.
 Extract and format the rating trace for one source-data row and, optionally,
 one coverage.
 }
+\examples{
+ex <- example_rating_plan()
+
+result <- rate_policies_with_trace(
+  ex$policies,
+  ex$plan
+)
+
+explain_rating(
+  rating_result = result,
+  row_number = 1,
+  coverage = "BI"
+)
+}

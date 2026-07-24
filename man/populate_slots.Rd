@@ -16,3 +16,18 @@ populate_slots(x, ..., max_vars = 12)
 \description{
 Populate variable/level slots from named values
 }
+\examples{
+factors <- data.frame(
+  term_name = c("territory_limit", "territory_limit"),
+  term_value = c(1.10, 0.95)
+)
+
+factors <- populate_slots(
+  factors,
+  territory = c("A", "B"),
+  limit = "100/300",
+  max_vars = 2
+)
+
+factors
+}

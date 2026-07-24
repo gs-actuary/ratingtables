@@ -9,3 +9,9 @@ example_rating_plan()
 \description{
 Build a small example rating plan
 }
+\examples{
+ex <- example_rating_plan()
+
+ex$policies
+ex$plan
+}

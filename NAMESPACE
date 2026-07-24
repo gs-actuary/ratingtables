@@ -29,5 +29,7 @@ export(trace_to_wide_factors)
 export(trace_to_excel_style)
 export(append_rating_factors)
 export(explain_rating)
+export(find_duplicate_factors)
 S3method(print,rating_plan)
 S3method(summary,rating_plan)
+

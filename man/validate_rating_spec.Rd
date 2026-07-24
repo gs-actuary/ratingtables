@@ -14,3 +14,12 @@ validate_rating_spec(rating_spec, ...)
 \description{
 Validate a rating specification
 }
+\examples{
+ex <- example_rating_plan()
+
+isTRUE(
+  validate_rating_spec(
+    ex$plan$rating_spec
+  )
+)
+}

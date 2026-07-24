@@ -18,3 +18,15 @@ the principal rating inputs, applied values, and before-and-after values.
 Select and order the principal trace columns to produce a compact,
 human-readable view of the rating calculation.
 }
+\examples{
+ex <- example_rating_plan()
+
+result <- rate_policies_with_trace(
+  ex$policies,
+  ex$plan
+)
+
+trace_to_excel_style(
+  result$term_trace
+)
+}

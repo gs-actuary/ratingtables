@@ -21,3 +21,18 @@ and the rating plan.
 Apply a rating plan to entity-level records such as drivers, vehicles,
 boats, or scheduled items, returning both rated values and trace output.
 }
+\examples{
+ex <- example_rating_plan()
+
+drivers <- ex$policies
+drivers$household_id <- "H1"
+drivers$policy_id <- c("D1", "D2")
+
+result <- rate_entities(
+  entity_data = drivers,
+  plan = ex$plan
+)
+
+result$rated_data
+result$term_trace
+}

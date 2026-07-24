@@ -13,6 +13,13 @@
 #' Add empty variable/level slot columns
 #' @param n Number of rows.
 #' @param max_vars Number of variable/level slots.
+#' @examples
+#' slots <- make_empty_slots(
+#'   n = 2,
+#'   max_vars = 3
+#' )
+#'
+#' slots
 #' @export
 make_empty_slots <- function(n = 1, max_vars = 12) {
   max_vars <- .normalize_max_vars(max_vars)
@@ -28,6 +35,18 @@ make_empty_slots <- function(n = 1, max_vars = 12) {
 #' Ensure variable/level slot columns exist
 #' @param x Data frame.
 #' @param max_vars Number of variable/level slots.
+#' @examples
+#' factors <- data.frame(
+#'   term_name = "territory",
+#'   term_value = 1.10
+#' )
+#'
+#' factors <- ensure_slot_columns(
+#'   factors,
+#'   max_vars = 2
+#' )
+#'
+#' factors
 #' @export
 ensure_slot_columns <- function(x, max_vars = 12) {
   max_vars <- .normalize_max_vars(max_vars)
@@ -44,6 +63,20 @@ ensure_slot_columns <- function(x, max_vars = 12) {
 #' @param x Data frame.
 #' @param ... Named vectors/lists of variable names and levels.
 #' @param max_vars Maximum slot count.
+#' @examples
+#' factors <- data.frame(
+#'   term_name = c("territory_limit", "territory_limit"),
+#'   term_value = c(1.10, 0.95)
+#' )
+#'
+#' factors <- populate_slots(
+#'   factors,
+#'   territory = c("A", "B"),
+#'   limit = "100/300",
+#'   max_vars = 2
+#' )
+#'
+#' factors
 #' @export
 populate_slots <- function(x, ..., max_vars = 12) {
   max_vars <- .normalize_max_vars(max_vars)

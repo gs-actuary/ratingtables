@@ -24,3 +24,15 @@ A wide data frame containing the identifying columns and one
 Convert normalized trace rows into one row per rating record and coverage,
 with a separate column for each rating step.
 }
+\examples{
+ex <- example_rating_plan()
+
+result <- rate_policies_with_trace(
+  ex$policies,
+  ex$plan
+)
+
+trace_to_wide_factors(
+  result$term_trace
+)
+}

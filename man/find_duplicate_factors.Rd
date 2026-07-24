@@ -20,3 +20,31 @@ keys. An empty data frame is returned when no duplicates are found.
 \description{
 Identify factor-table rows that have duplicate lookup keys.
 }
+\examples{
+factor_table <- data.frame(
+  state = c("IL", "IL", "IL"),
+  coverage = c("BI", "BI", "BI"),
+  term_name = c("territory", "territory", "territory"),
+  term_value = c(1.10, 1.15, 0.95),
+  variable1 = c("territory", "territory", "territory"),
+  level1 = c("A", "A", "B"),
+  stringsAsFactors = FALSE
+)
+
+duplicates <- find_duplicate_factors(
+  factor_table,
+  max_vars = 1
+)
+
+duplicates[
+  ,
+  c(
+    "state",
+    "coverage",
+    "term_name",
+    "term_value",
+    "variable1",
+    "level1"
+  )
+]
+}

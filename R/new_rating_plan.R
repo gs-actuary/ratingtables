@@ -8,6 +8,17 @@
 #' @param custom_functions Named list of user-written R functions.
 #' @param validate Whether to validate.
 #' @param metadata Optional metadata list.
+#' @examples
+#' ex <- example_rating_plan()
+#'
+#' plan <- new_rating_plan(
+#'   factor_table = ex$plan$factor_table,
+#'   rating_spec = ex$plan$rating_spec,
+#'   coverages = "BI"
+#' )
+#'
+#' print(plan)
+#' summary(plan)
 #' @export
 new_rating_plan <- function(factor_table, rating_spec, coverages, use_rate_set_key = FALSE, max_vars = 12, policy_id_col = "policy_id", custom_functions = list(), validate = TRUE, metadata = list()) {
   max_vars <- .normalize_max_vars(max_vars)
@@ -19,6 +30,7 @@ new_rating_plan <- function(factor_table, rating_spec, coverages, use_rate_set_k
   if (isTRUE(validate)) validate_rating_plan(plan)
   plan
 }
+
 
 #' @export
 print.rating_plan <- function(x, ...) {

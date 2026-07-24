@@ -9,7 +9,20 @@
 #'
 #' @return A `rating_result` object containing `rated_data`, `term_trace`,
 #'   and the rating plan.
+#' @examples
+#' ex <- example_rating_plan()
 #'
+#' drivers <- ex$policies
+#' drivers$household_id <- "H1"
+#' drivers$policy_id <- c("D1", "D2")
+#'
+#' result <- rate_entities(
+#'   entity_data = drivers,
+#'   plan = ex$plan
+#' )
+#'
+#' result$rated_data
+#' result$term_trace
 #' @export
 rate_entities <- function(entity_data, plan, validate = TRUE) rate_policies_with_trace(entity_data, plan, validate = validate)
 
@@ -24,7 +37,19 @@ rate_entities <- function(entity_data, plan, validate = TRUE) rate_policies_with
 #'
 #' @return A data frame containing the original entity data and calculated
 #'   indicated values.
+#' @examples
+#' ex <- example_rating_plan()
 #'
+#' drivers <- ex$policies
+#' drivers$household_id <- "H1"
+#' drivers$policy_id <- c("D1", "D2")
+#'
+#' scored <- score_entity_rows(
+#'   entity_data = drivers,
+#'   plan = ex$plan
+#' )
+#'
+#' scored
 #' @export
 score_entity_rows <- function(entity_data, plan, validate = TRUE) rate_entities(entity_data, plan, validate = validate)$rated_data
 
@@ -52,7 +77,19 @@ score_entity_rows <- function(entity_data, plan, validate = TRUE) rate_entities(
 #'
 #' @return A data frame with one row per unique value of `group_col` and one
 #'   aggregated column for each entry in `value_cols`.
+#' @examples
+#' rated_drivers <- data.frame(
+#'   policy_id = c("P1", "P1", "P2"),
+#'   indicated_BI = c(1.10, 0.90, 1.05)
+#' )
 #'
+#' aggregate_entity_values(
+#'   rated_entity_data = rated_drivers,
+#'   group_col = "policy_id",
+#'   value_cols = "indicated_BI",
+#'   aggregation = "mean",
+#'   output_names = "average_BI"
+#' )
 #' @export
 aggregate_entity_values <- function(rated_entity_data, group_col, value_cols, aggregation = "mean", weight_col = NULL, output_names = NULL, output_prefix = NULL) {
   d <- as.data.frame(rated_entity_data, stringsAsFactors = FALSE)
@@ -101,7 +138,17 @@ aggregate_entity_values <- function(rated_entity_data, group_col, value_cols, ag
 #'
 #' @return A data frame with one row per parent group and one average entity
 #'   factor column for each requested coverage.
+#' @examples
+#' rated_drivers <- data.frame(
+#'   policy_id = c("P1", "P1", "P2"),
+#'   indicated_BI = c(1.10, 0.90, 1.05)
+#' )
 #'
+#' average_entity_factors(
+#'   scored_entity_data = rated_drivers,
+#'   group_col = "policy_id",
+#'   coverages = "BI"
+#' )
 #' @export
 average_entity_factors <- function(scored_entity_data, group_col, coverages, output_prefix = "avg_entity_factor_") {
   value_cols <- paste0("indicated_", coverages)
@@ -121,7 +168,22 @@ average_entity_factors <- function(scored_entity_data, group_col, coverages, out
 #'
 #' @return A data frame containing all rows from `parent_data` with matching
 #'   columns from `entity_values`.
+#' @examples
+#' policies <- data.frame(
+#'   policy_id = c("P1", "P2"),
+#'   base_premium = c(100, 120)
+#' )
 #'
+#' driver_values <- data.frame(
+#'   policy_id = c("P1", "P2"),
+#'   average_driver_factor = c(1.05, 0.95)
+#' )
+#'
+#' join_entity_values(
+#'   parent_data = policies,
+#'   entity_values = driver_values,
+#'   by = "policy_id"
+#' )
 #' @export
 join_entity_values <- function(parent_data, entity_values, by) merge(as.data.frame(parent_data, stringsAsFactors = FALSE), as.data.frame(entity_values, stringsAsFactors = FALSE), by = by, all.x = TRUE, sort = FALSE)
 
@@ -137,6 +199,21 @@ join_entity_values <- function(parent_data, entity_values, by) merge(as.data.fra
 #'
 #' @return A data frame containing all rows from `rating_data` with matching
 #'   entity-factor columns appended.
+#' @examples
+#' policies <- data.frame(
+#'   policy_id = c("P1", "P2"),
+#'   base_premium = c(100, 120)
+#' )
 #'
+#' driver_factors <- data.frame(
+#'   policy_id = c("P1", "P2"),
+#'   average_driver_factor = c(1.05, 0.95)
+#' )
+#'
+#' join_entity_factors(
+#'   rating_data = policies,
+#'   entity_factor_data = driver_factors,
+#'   by = "policy_id"
+#' )
 #' @export
 join_entity_factors <- function(rating_data, entity_factor_data, by) join_entity_values(rating_data, entity_factor_data, by)

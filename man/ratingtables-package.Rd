@@ -9,11 +9,11 @@
 Lightweight table-driven rating kernel for insurance rating tables, coverage-specific rating specifications, interpolation, entity aggregation, custom calculation functions, and trace output.
 }
 \author{
-\strong{Maintainer}: Greg Sollenberger \email{greg@example.com}
+\strong{Maintainer}: Greg Sollenberger \email{yagreg7@yahoo.com}
 
 Authors:
 \itemize{
-  \item Greg Sollenberger \email{greg@example.com}
+  \item Greg Sollenberger \email{yagreg7@yahoo.com}
 }
 
 }

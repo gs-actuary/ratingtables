@@ -12,3 +12,10 @@ validate_rating_plan(plan)
 \description{
 Validate a rating plan
 }
+\examples{
+ex <- example_rating_plan()
+
+isTRUE(
+  validate_rating_plan(ex$plan)
+)
+}

@@ -40,3 +40,17 @@ associated trace information.
 Dispatch a rating-table lookup to either exact matching or interpolated
 lookup according to \code{value_source}.
 }
+\examples{
+ex <- example_rating_plan()
+policy <- ex$policies[1, , drop = FALSE]
+
+answer <- lookup_factor_value(
+  row = policy,
+  coverage = "BI",
+  plan = ex$plan,
+  term_name = "territory",
+  value_source = "factor_lookup"
+)
+
+answer
+}

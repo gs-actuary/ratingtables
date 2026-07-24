@@ -10,6 +10,15 @@
 #'
 #' @return A data frame containing the original rating data plus one
 #'   `indicated_<coverage>` column for each coverage in the rating plan.
+#' @examples
+#' ex <- example_rating_plan()
+#'
+#' rated <- rate_policies(
+#'   rating_data = ex$policies,
+#'   plan = ex$plan
+#' )
+#'
+#' rated
 #'
 #' @export
 rate_policies <- function(rating_data, plan, validate = TRUE) {
@@ -32,7 +41,16 @@ rate_policies <- function(rating_data, plan, validate = TRUE) {
 #'   \item{term_trace}{Step-by-step rating trace rows.}
 #'   \item{plan}{The rating plan used for the calculation.}
 #' }
+#' @examples
+#' ex <- example_rating_plan()
 #'
+#' result <- rate_policies_with_trace(
+#'   rating_data = ex$policies,
+#'   plan = ex$plan
+#' )
+#'
+#' result$rated_data
+#' result$term_trace
 #' @export
 rate_policies_with_trace <- function(rating_data, plan, validate = TRUE) {
   if (!inherits(plan, "rating_plan")) stop("plan must be a rating_plan object.", call. = FALSE)

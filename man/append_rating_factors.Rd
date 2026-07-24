@@ -22,3 +22,17 @@ columns appended.
 Reshape normalized trace rows to wide rating-factor columns and join them
 back to the rated records.
 }
+\examples{
+ex <- example_rating_plan()
+
+result <- rate_policies_with_trace(
+  ex$policies,
+  ex$plan
+)
+
+append_rating_factors(
+  rated_data = result$rated_data,
+  term_trace = result$term_trace,
+  by = "row_number"
+)
+}

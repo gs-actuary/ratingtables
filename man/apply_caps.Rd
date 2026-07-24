@@ -40,3 +40,23 @@ requested coverage.
 Limit indicated premiums so that they do not increase or decrease by more
 than specified percentages relative to prior premiums.
 }
+\examples{
+indicated <- data.frame(
+  policy_id = c("P1", "P2"),
+  indicated_BI = c(125, 80)
+)
+
+prior <- data.frame(
+  policy_id = c("P1", "P2"),
+  prior_BI = c(100, 100)
+)
+
+apply_caps(
+  rating_data = indicated,
+  prior_data = prior,
+  by = "policy_id",
+  coverages = "BI",
+  max_increase = 0.10,
+  max_decrease = 0.15
+)
+}

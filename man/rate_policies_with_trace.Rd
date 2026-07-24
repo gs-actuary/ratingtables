@@ -26,3 +26,14 @@ A \code{rating_result} object containing:
 Apply a rating plan to every row and coverage in a policy-level data frame
 and retain step-by-step trace information.
 }
+\examples{
+ex <- example_rating_plan()
+
+result <- rate_policies_with_trace(
+  rating_data = ex$policies,
+  plan = ex$plan
+)
+
+result$rated_data
+result$term_trace
+}

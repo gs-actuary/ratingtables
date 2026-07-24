@@ -14,3 +14,13 @@ validate_policy_data(rating_data, plan)
 \description{
 Validate rating input data
 }
+\examples{
+ex <- example_rating_plan()
+
+isTRUE(
+  validate_policy_data(
+    rating_data = ex$policies,
+    plan = ex$plan
+  )
+)
+}

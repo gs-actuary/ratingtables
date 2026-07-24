@@ -23,3 +23,17 @@ the looked-up value, and the matching factor-row identifier.
 Select the single most specific factor-table row that matches a rating
 record, coverage, term, rate-set metadata, and variable-level conditions.
 }
+\examples{
+ex <- example_rating_plan()
+policy <- ex$policies[1, , drop = FALSE]
+
+answer <- lookup_exact_value(
+  row = policy,
+  coverage = "BI",
+  plan = ex$plan,
+  term_name = "territory"
+)
+
+answer$value
+answer$factor_row_id
+}

@@ -38,3 +38,15 @@ new_rating_plan(
 \description{
 Create a rating plan
 }
+\examples{
+ex <- example_rating_plan()
+
+plan <- new_rating_plan(
+  factor_table = ex$plan$factor_table,
+  rating_spec = ex$plan$rating_spec,
+  coverages = "BI"
+)
+
+print(plan)
+summary(plan)
+}

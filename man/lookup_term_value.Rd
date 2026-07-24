@@ -30,3 +30,22 @@ information.
 Compatibility wrapper around \code{\link[=lookup_exact_value]{lookup_exact_value()}}. By default, it returns
 only the numeric factor value.
 }
+\examples{
+ex <- example_rating_plan()
+policy <- ex$policies[1, , drop = FALSE]
+
+lookup_term_value(
+  row = policy,
+  coverage = "BI",
+  plan = ex$plan,
+  term_name = "territory"
+)
+
+lookup_term_value(
+  row = policy,
+  coverage = "BI",
+  plan = ex$plan,
+  term_name = "territory",
+  return_match = TRUE
+)
+}

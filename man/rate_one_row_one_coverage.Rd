@@ -24,3 +24,16 @@ value, and \code{trace}, containing one trace row per rating-specification step.
 Execute the applicable rating specification one step at a time for a single
 record and coverage.
 }
+\examples{
+ex <- example_rating_plan()
+
+answer <- rate_one_row_one_coverage(
+  row = ex$policies[1, , drop = FALSE],
+  coverage = "BI",
+  plan = ex$plan,
+  row_number = 1
+)
+
+answer$value
+answer$trace
+}

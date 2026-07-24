@@ -14,3 +14,11 @@ make_empty_slots(n = 1, max_vars = 12)
 \description{
 Add empty variable/level slot columns
 }
+\examples{
+slots <- make_empty_slots(
+  n = 2,
+  max_vars = 3
+)
+
+slots
+}

@@ -38,3 +38,54 @@ weight, and factor-row identifiers.
 Select the applicable interpolation curve for a rating record and calculate
 a linearly interpolated value from the surrounding table points.
 }
+\examples{
+factor_table <- data.frame(
+  state = c("IL", "IL"),
+  charter = c("STD", "STD"),
+  book_segment = c("new", "new"),
+  rate_eff_date = as.Date(c("2025-01-01", "2025-01-01")),
+  rate_exp_date = as.Date(c("2025-12-31", "2025-12-31")),
+  coverage = c("BI", "BI"),
+  term_name = c("limit_factor", "limit_factor"),
+  term_value = c(1.00, 1.20),
+  variable1 = c("limit_value", "limit_value"),
+  level1 = c("100", "200"),
+  stringsAsFactors = FALSE
+)
+
+rating_spec <- data.frame(
+  step_number = 1,
+  term_name = "limit_factor",
+  value_source = "interpolated_lookup",
+  calculation_type = "multiplicative",
+  lookup_var = "limit_value",
+  stringsAsFactors = FALSE
+)
+
+plan <- new_rating_plan(
+  factor_table = factor_table,
+  rating_spec = rating_spec,
+  coverages = "BI"
+)
+
+policy <- data.frame(
+  policy_id = "P1",
+  state = "IL",
+  charter = "STD",
+  book_segment = "new",
+  rating_date = as.Date("2025-06-01"),
+  limit_value = 150,
+  stringsAsFactors = FALSE
+)
+
+answer <- lookup_interpolated_value(
+  row = policy,
+  coverage = "BI",
+  plan = plan,
+  term_name = "limit_factor",
+  lookup_var = "limit_value"
+)
+
+answer$value
+answer$interpolation_weight
+}

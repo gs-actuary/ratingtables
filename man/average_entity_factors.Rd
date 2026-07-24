@@ -32,3 +32,15 @@ factor column for each requested coverage.
 Average indicated coverage values across entity records belonging to the
 same parent record.
 }
+\examples{
+rated_drivers <- data.frame(
+  policy_id = c("P1", "P1", "P2"),
+  indicated_BI = c(1.10, 0.90, 1.05)
+)
+
+average_entity_factors(
+  scored_entity_data = rated_drivers,
+  group_col = "policy_id",
+  coverages = "BI"
+)
+}

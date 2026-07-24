@@ -17,3 +17,13 @@ the supplied factor table.
 Separate a normalized long-form factor table into a collection of smaller
 tables suitable for human review.
 }
+\examples{
+ex <- example_rating_plan()
+
+tables <- rate_set_to_tables(
+  ex$plan$factor_table
+)
+
+names(tables)
+tables$territory
+}

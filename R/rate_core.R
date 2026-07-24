@@ -83,7 +83,18 @@
 #'
 #' @return A list with two elements: `value`, containing the final indicated
 #'   value, and `trace`, containing one trace row per rating-specification step.
+#' @examples
+#' ex <- example_rating_plan()
 #'
+#' answer <- rate_one_row_one_coverage(
+#'   row = ex$policies[1, , drop = FALSE],
+#'   coverage = "BI",
+#'   plan = ex$plan,
+#'   row_number = 1
+#' )
+#'
+#' answer$value
+#' answer$trace
 #' @export
 rate_one_row_one_coverage <- function(row, coverage, plan, row_number = 1) {
   if (!inherits(plan, "rating_plan")) stop("plan must be a rating_plan object.", call. = FALSE)

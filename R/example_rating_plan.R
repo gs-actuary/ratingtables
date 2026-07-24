@@ -1,4 +1,9 @@
 #' Build a small example rating plan
+#' @examples
+#' ex <- example_rating_plan()
+#'
+#' ex$policies
+#' ex$plan
 #' @export
 example_rating_plan <- function() {
   ft <- data.frame(

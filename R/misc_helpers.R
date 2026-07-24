@@ -18,7 +18,25 @@
 #'
 #' @return A merged data frame with one `capped_<coverage>` column for each
 #'   requested coverage.
+#' @examples
+#' indicated <- data.frame(
+#'   policy_id = c("P1", "P2"),
+#'   indicated_BI = c(125, 80)
+#' )
 #'
+#' prior <- data.frame(
+#'   policy_id = c("P1", "P2"),
+#'   prior_BI = c(100, 100)
+#' )
+#'
+#' apply_caps(
+#'   rating_data = indicated,
+#'   prior_data = prior,
+#'   by = "policy_id",
+#'   coverages = "BI",
+#'   max_increase = 0.10,
+#'   max_decrease = 0.15
+#' )
 #' @export
 apply_caps <- function(rating_data, prior_data, by, coverages, max_increase = NULL, max_decrease = NULL) {
   d <- merge(as.data.frame(rating_data, stringsAsFactors = FALSE), as.data.frame(prior_data, stringsAsFactors = FALSE), by = by, all.x = TRUE, suffixes = c("", "_prior"), sort = FALSE)
@@ -42,6 +60,14 @@ apply_caps <- function(rating_data, prior_data, by, coverages, max_increase = NU
 #'
 #' @return A named list of data frames containing review-friendly subsets of
 #'   the supplied factor table.
+#' @examples
+#' ex <- example_rating_plan()
 #'
+#' tables <- rate_set_to_tables(
+#'   ex$plan$factor_table
+#' )
+#'
+#' names(tables)
+#' tables$territory
 #' @export
 rate_set_to_tables <- function(factor_table) split(as.data.frame(factor_table, stringsAsFactors = FALSE), as.character(factor_table$term_name))

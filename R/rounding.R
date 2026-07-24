@@ -3,6 +3,19 @@
 #' @param rule Rounding rule.
 #' @param digits Digits for base R rounding rules.
 #' @param increment Increment for nearest_increment.
+#' @examples
+#' premiums <- c(101.234, 105.678)
+#'
+#' apply_rounding(
+#'   premiums,
+#'   rule = "nearest_cent"
+#' )
+#'
+#' apply_rounding(
+#'   premiums,
+#'   rule = "nearest_increment",
+#'   increment = 5
+#' )
 #' @export
 apply_rounding <- function(x, rule = NA, digits = NA, increment = NA) {
   if (.is_blank(rule) || identical(rule, "none")) return(x)

@@ -22,3 +22,20 @@ entity-factor columns appended.
 Backward-compatible wrapper around \code{\link[=join_entity_values]{join_entity_values()}} for joining
 aggregated entity factors to parent-level rating data.
 }
+\examples{
+policies <- data.frame(
+  policy_id = c("P1", "P2"),
+  base_premium = c(100, 120)
+)
+
+driver_factors <- data.frame(
+  policy_id = c("P1", "P2"),
+  average_driver_factor = c(1.05, 0.95)
+)
+
+join_entity_factors(
+  rating_data = policies,
+  entity_factor_data = driver_factors,
+  by = "policy_id"
+)
+}

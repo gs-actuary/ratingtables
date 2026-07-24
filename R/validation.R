@@ -1,6 +1,15 @@
 #' Validate a factor table
 #' @param factor_table A factor table.
 #' @param max_vars Maximum slot count.
+#' @examples
+#' ex <- example_rating_plan()
+#'
+#' isTRUE(
+#'   validate_factor_table(
+#'     ex$plan$factor_table,
+#'     max_vars = ex$plan$max_vars
+#'   )
+#' )
 #' @export
 validate_factor_table <- function(factor_table, max_vars = 12) {
   ft <- ensure_slot_columns(as.data.frame(factor_table, stringsAsFactors = FALSE), max_vars)
@@ -20,7 +29,33 @@ validate_factor_table <- function(factor_table, max_vars = 12) {
 #'
 #' @return A data frame containing factor-table rows with duplicated lookup
 #'   keys. An empty data frame is returned when no duplicates are found.
+#' @examples
+#' factor_table <- data.frame(
+#'   state = c("IL", "IL", "IL"),
+#'   coverage = c("BI", "BI", "BI"),
+#'   term_name = c("territory", "territory", "territory"),
+#'   term_value = c(1.10, 1.15, 0.95),
+#'   variable1 = c("territory", "territory", "territory"),
+#'   level1 = c("A", "A", "B"),
+#'   stringsAsFactors = FALSE
+#' )
 #'
+#' duplicates <- find_duplicate_factors(
+#'   factor_table,
+#'   max_vars = 1
+#' )
+#'
+#' duplicates[
+#'   ,
+#'   c(
+#'     "state",
+#'     "coverage",
+#'     "term_name",
+#'     "term_value",
+#'     "variable1",
+#'     "level1"
+#'   )
+#' ]
 #' @export
 find_duplicate_factors <- function(factor_table, max_vars = 12, ...) {
   ft <- ensure_slot_columns(as.data.frame(factor_table, stringsAsFactors = FALSE), max_vars)
@@ -33,6 +68,14 @@ find_duplicate_factors <- function(factor_table, max_vars = 12, ...) {
 #' Validate a rating specification
 #' @param rating_spec Rating spec.
 #' @param ... Ignored for compatibility.
+#' @examples
+#' ex <- example_rating_plan()
+#'
+#' isTRUE(
+#'   validate_rating_spec(
+#'     ex$plan$rating_spec
+#'   )
+#' )
 #' @export
 validate_rating_spec <- function(rating_spec, ...) {
   spec <- .normalize_rating_spec(rating_spec)
@@ -54,6 +97,14 @@ validate_rating_spec <- function(rating_spec, ...) {
 
 #' Validate rate set fields
 #' @param factor_table A factor table.
+#' @examples
+#' ex <- example_rating_plan()
+#'
+#' isTRUE(
+#'   validate_rate_sets(
+#'     ex$plan$factor_table
+#'   )
+#' )
 #' @export
 validate_rate_sets <- function(factor_table) {
   ft <- as.data.frame(factor_table, stringsAsFactors = FALSE)
@@ -64,6 +115,12 @@ validate_rate_sets <- function(factor_table) {
 
 #' Validate a rating plan
 #' @param plan A rating plan.
+#' @examples
+#' ex <- example_rating_plan()
+#'
+#' isTRUE(
+#'   validate_rating_plan(ex$plan)
+#' )
 #' @export
 validate_rating_plan <- function(plan) {
   if (!inherits(plan, "rating_plan")) stop("plan must be a rating_plan.", call. = FALSE)
@@ -83,6 +140,10 @@ validate_rating_plan <- function(plan) {
 
 #' Required policy fields for a plan
 #' @param plan A rating plan.
+#' @examples
+#' ex <- example_rating_plan()
+#'
+#' required_policy_fields(ex$plan)
 #' @export
 required_policy_fields <- function(plan) {
   if (!inherits(plan, "rating_plan")) stop("plan must be a rating_plan.", call. = FALSE)
@@ -107,6 +168,15 @@ required_policy_fields <- function(plan) {
 #' Validate rating input data
 #' @param rating_data Input data.
 #' @param plan A rating plan.
+#' @examples
+#' ex <- example_rating_plan()
+#'
+#' isTRUE(
+#'   validate_policy_data(
+#'     rating_data = ex$policies,
+#'     plan = ex$plan
+#'   )
+#' )
 #' @export
 validate_policy_data <- function(rating_data, plan) {
   d <- as.data.frame(rating_data, stringsAsFactors = FALSE)
