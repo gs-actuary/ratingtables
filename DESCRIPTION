@@ -1,7 +1,7 @@
 Package: ratingtables
 Title: Table-Driven Insurance Rating
 Version: 0.2.0
-Authors@R: person("Greg", "Sollenberger", email = "greg@example.com", role = c("aut", "cre"))
+Authors@R: person("Greg", "Sollenberger", email = "yagreg7@yahoo.com", role = c("aut", "cre"))
 Description: Lightweight table-driven rating kernel for insurance rating tables, coverage-specific rating specifications, interpolation, entity aggregation, custom calculation functions, and trace output.
 License: MIT + file LICENSE
 Encoding: UTF-8
