@@ -11,6 +11,12 @@ ordinary programmatic manipulation.
 
 ## Installation
 
+Once `ratingtables` is available on CRAN, install the released version with:
+
+```r
+install.packages("ratingtables")
+```
+
 The current development version can be installed directly from GitHub:
 
 ```r
