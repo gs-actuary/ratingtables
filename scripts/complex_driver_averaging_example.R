@@ -65,9 +65,9 @@ max_vars <- 12L
 coverages <- c("BI", "PD")
 
 rate_sets <- data.frame(
-  rate_set_key  = c("IL_HM_NB_2025A", "IL_HM_REN_2025A"),
+  rate_set_key  = c("IL_SF_NB_2025A", "IL_SF_REN_2025A"),
   state         = c("IL", "IL"),
-  charter       = c("HM", "HM"),
+  charter       = c("SF", "SF"),
   book_segment  = c("newbusiness", "renewal"),
   rate_eff_date = as.Date(c("2025-01-01", "2025-01-01")),
   rate_exp_date = as.Date(c("2025-12-31", "2025-12-31")),
@@ -132,7 +132,7 @@ make_factor_rows <- function(term_name, coverage, term_value, vars = list(), rat
 add_for_both_rate_sets <- function(base_rows) {
   nb <- base_rows
   ren <- base_rows
-  ren$rate_set_key <- "IL_HM_REN_2025A"
+  ren$rate_set_key <- "IL_SF_REN_2025A"
   ren$book_segment <- "renewal"
   ren$rate_eff_date <- as.Date("2025-01-01")
   ren$rate_exp_date <- as.Date("2025-12-31")
@@ -275,7 +275,7 @@ driver_plan <- new_rating_plan(
   use_rate_set_key = FALSE,
   max_vars = max_vars,
   policy_id_col = "driver_id",
-  metadata = list(plan_id = "IL_HM_DRIVER_FACTOR_2025A"),
+  metadata = list(plan_id = "IL_SF_DRIVER_FACTOR_2025A"),
   validate = TRUE
 )
 
@@ -287,7 +287,7 @@ drivers <- data.frame(
   driver_id = paste0("D", 1:10),
   household_id = c("H1", "H1", "H2", "H2", "H2", "H3", "H4", "H4", "H5", "H5"),
   state = "IL",
-  charter = "HM",
+  charter = "SF",
   rating_date = as.Date("2025-06-15"),
   book_segment = c(
     "newbusiness", "newbusiness",
@@ -441,7 +441,7 @@ vehicle_plan <- new_rating_plan(
   max_vars = max_vars,
   policy_id_col = "vehicle_id",
   custom_functions = list(custom_high_score_surcharge = custom_high_score_surcharge),
-  metadata = list(plan_id = "IL_HM_VEHICLE_MASTER_2025A"),
+  metadata = list(plan_id = "IL_SF_VEHICLE_MASTER_2025A"),
   validate = TRUE
 )
 
@@ -454,7 +454,7 @@ vehicles <- data.frame(
   policy_id = c("P1", "P1", "P2", "P2", "P3", "P4", "P5", "P5"),
   household_id = c("H1", "H1", "H2", "H2", "H3", "H4", "H5", "H5"),
   state = "IL",
-  charter = "HM",
+  charter = "SF",
   rating_date = as.Date("2025-06-15"),
   book_segment = c(
     "newbusiness", "newbusiness", "renewal", "renewal",
@@ -570,3 +570,4 @@ print(head(trace_to_wide_factors(vehicle_result$term_trace)), row.names = FALSE)
 #   vehicles_with_driver_avgs, vehicle_result, rated_vehicles,
 #   rated_vehicles_capped, policy_totals
 # ============================================================
+
