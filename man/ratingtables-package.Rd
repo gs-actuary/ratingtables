@@ -6,14 +6,22 @@
 \alias{ratingtables-package}
 \title{ratingtables: Table-driven insurance rating}
 \description{
-Lightweight table-driven rating kernel for insurance rating tables, coverage-specific rating specifications, interpolation, entity aggregation, custom calculation functions, and trace output.
+Provides a lightweight, table-driven engine for executing insurance rating plans, including coverage-specific rating specifications, entity aggregation, and trace output for auditing. Given policy data, an ordered rating specification, and rating factor tables, it returns rated policies and, optionally, a step-by-step trace of the calculation.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/gs-actuary/ratingtables}
+  \item Report bugs at \url{https://github.com/gs-actuary/ratingtables/issues}
+}
+
 }
 \author{
-\strong{Maintainer}: Greg Sollenberger \email{yagreg7@yahoo.com}
+\strong{Maintainer}: Greg Sollenberger \email{yagreg7@yahoo.com} [copyright holder]
 
 Authors:
 \itemize{
-  \item Greg Sollenberger \email{yagreg7@yahoo.com}
+  \item Greg Sollenberger \email{yagreg7@yahoo.com} [copyright holder]
 }
 
 }

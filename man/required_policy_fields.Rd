@@ -9,6 +9,10 @@ required_policy_fields(plan)
 \arguments{
 \item{plan}{A rating plan.}
 }
+\value{
+A character vector containing the unique policy-data field names
+required to execute the rating plan.
+}
 \description{
 Required policy fields for a plan
 }

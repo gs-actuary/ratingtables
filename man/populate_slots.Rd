@@ -13,6 +13,10 @@ populate_slots(x, ..., max_vars = 12)
 
 \item{max_vars}{Maximum slot count.}
 }
+\value{
+A data frame containing \code{x} with variable and level slot columns
+populated from the named values supplied through \code{...}.
+}
 \description{
 Populate variable/level slots from named values
 }

@@ -11,6 +11,10 @@ validate_rating_spec(rating_spec, ...)
 
 \item{...}{Ignored for compatibility.}
 }
+\value{
+Invisibly returns \code{TRUE} if validation succeeds. Otherwise, the
+function stops with an error.
+}
 \description{
 Validate a rating specification
 }

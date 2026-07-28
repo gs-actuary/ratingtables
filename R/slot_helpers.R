@@ -13,6 +13,10 @@
 #' Add empty variable/level slot columns
 #' @param n Number of rows.
 #' @param max_vars Number of variable/level slots.
+#' 
+#' @return A data frame with `n` rows and one `variable` and `level` column
+#'   pair for each requested slot.
+#'   
 #' @examples
 #' slots <- make_empty_slots(
 #'   n = 2,
@@ -35,6 +39,10 @@ make_empty_slots <- function(n = 1, max_vars = 12) {
 #' Ensure variable/level slot columns exist
 #' @param x Data frame.
 #' @param max_vars Number of variable/level slots.
+#' 
+#' @return A data frame containing the original columns in `x` plus any
+#'   missing variable and level slot columns.
+#'   
 #' @examples
 #' factors <- data.frame(
 #'   term_name = "territory",
@@ -63,6 +71,10 @@ ensure_slot_columns <- function(x, max_vars = 12) {
 #' @param x Data frame.
 #' @param ... Named vectors/lists of variable names and levels.
 #' @param max_vars Maximum slot count.
+#' 
+#' @return A data frame containing `x` with variable and level slot columns
+#'   populated from the named values supplied through `...`.
+#' 
 #' @examples
 #' factors <- data.frame(
 #'   term_name = c("territory_limit", "territory_limit"),

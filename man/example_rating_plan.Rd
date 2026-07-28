@@ -6,6 +6,13 @@
 \usage{
 example_rating_plan()
 }
+\value{
+A list with two elements:
+\describe{
+\item{plan}{An example \code{rating_plan} object.}
+\item{policies}{A data frame containing example policy records.}
+}
+}
 \description{
 Build a small example rating plan
 }

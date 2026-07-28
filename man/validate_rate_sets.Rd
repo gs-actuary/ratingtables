@@ -9,6 +9,10 @@ validate_rate_sets(factor_table)
 \arguments{
 \item{factor_table}{A factor table.}
 }
+\value{
+Invisibly returns \code{TRUE} if validation succeeds. Otherwise, the
+function stops with an error.
+}
 \description{
 Validate rate set fields
 }

@@ -8,6 +8,11 @@
 #' @param custom_functions Named list of user-written R functions.
 #' @param validate Whether to validate.
 #' @param metadata Optional metadata list.
+#' 
+#' @return A `rating_plan` object containing the normalized factor table,
+#'   rating specification, coverages, configuration, custom functions, and
+#'   metadata.
+#' 
 #' @examples
 #' ex <- example_rating_plan()
 #'

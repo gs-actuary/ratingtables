@@ -3,6 +3,10 @@
 #' @param rule Rounding rule.
 #' @param digits Digits for base R rounding rules.
 #' @param increment Increment for nearest_increment.
+#' 
+#' @return A numeric vector containing the rounded values. If `rule` is
+#'   missing or `"none"`, `x` is returned unchanged.
+#'   
 #' @examples
 #' premiums <- c(101.234, 105.678)
 #'

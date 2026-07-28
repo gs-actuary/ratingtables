@@ -1,4 +1,11 @@
 #' Build a small example rating plan
+#' 
+#' @return A list with two elements:
+#' \describe{
+#'   \item{plan}{An example `rating_plan` object.}
+#'   \item{policies}{A data frame containing example policy records.}
+#' }
+#' 
 #' @examples
 #' ex <- example_rating_plan()
 #'

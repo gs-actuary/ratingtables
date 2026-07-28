@@ -9,6 +9,10 @@ validate_rating_plan(plan)
 \arguments{
 \item{plan}{A rating plan.}
 }
+\value{
+Invisibly returns \code{TRUE} if validation succeeds. Otherwise, the
+function stops with an error.
+}
 \description{
 Validate a rating plan
 }

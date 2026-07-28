@@ -11,6 +11,10 @@ validate_policy_data(rating_data, plan)
 
 \item{plan}{A rating plan.}
 }
+\value{
+Invisibly returns \code{TRUE} if validation succeeds. Otherwise, the
+function stops with an error.
+}
 \description{
 Validate rating input data
 }

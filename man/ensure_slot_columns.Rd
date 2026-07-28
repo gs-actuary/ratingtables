@@ -11,6 +11,10 @@ ensure_slot_columns(x, max_vars = 12)
 
 \item{max_vars}{Number of variable/level slots.}
 }
+\value{
+A data frame containing the original columns in \code{x} plus any
+missing variable and level slot columns.
+}
 \description{
 Ensure variable/level slot columns exist
 }

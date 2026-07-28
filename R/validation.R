@@ -1,6 +1,10 @@
 #' Validate a factor table
 #' @param factor_table A factor table.
 #' @param max_vars Maximum slot count.
+#' 
+#' @return Invisibly returns `TRUE` if validation succeeds. Otherwise, the
+#'   function stops with an error.
+#' 
 #' @examples
 #' ex <- example_rating_plan()
 #'
@@ -68,6 +72,10 @@ find_duplicate_factors <- function(factor_table, max_vars = 12, ...) {
 #' Validate a rating specification
 #' @param rating_spec Rating spec.
 #' @param ... Ignored for compatibility.
+#' 
+#' @return Invisibly returns `TRUE` if validation succeeds. Otherwise, the
+#'   function stops with an error.
+#' 
 #' @examples
 #' ex <- example_rating_plan()
 #'
@@ -97,6 +105,10 @@ validate_rating_spec <- function(rating_spec, ...) {
 
 #' Validate rate set fields
 #' @param factor_table A factor table.
+#' 
+#' @return Invisibly returns `TRUE` if validation succeeds. Otherwise, the
+#'   function stops with an error.
+#' 
 #' @examples
 #' ex <- example_rating_plan()
 #'
@@ -115,6 +127,10 @@ validate_rate_sets <- function(factor_table) {
 
 #' Validate a rating plan
 #' @param plan A rating plan.
+#' 
+#' @return Invisibly returns `TRUE` if validation succeeds. Otherwise, the
+#'   function stops with an error.
+#' 
 #' @examples
 #' ex <- example_rating_plan()
 #'
@@ -140,6 +156,10 @@ validate_rating_plan <- function(plan) {
 
 #' Required policy fields for a plan
 #' @param plan A rating plan.
+#' 
+#' @return A character vector containing the unique policy-data field names
+#'   required to execute the rating plan.
+#' 
 #' @examples
 #' ex <- example_rating_plan()
 #'
@@ -168,6 +188,10 @@ required_policy_fields <- function(plan) {
 #' Validate rating input data
 #' @param rating_data Input data.
 #' @param plan A rating plan.
+#' 
+#' @return Invisibly returns `TRUE` if validation succeeds. Otherwise, the
+#'   function stops with an error.
+#' 
 #' @examples
 #' ex <- example_rating_plan()
 #'

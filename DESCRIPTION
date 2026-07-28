@@ -1,9 +1,11 @@
 Package: ratingtables
 Title: Table-Driven Insurance Rating
 Version: 0.2.0
-Authors@R: person("Greg", "Sollenberger", email = "yagreg7@yahoo.com", role = c("aut", "cre"))
+Authors@R: person("Greg", "Sollenberger", email = "yagreg7@yahoo.com", role = c("aut", "cre","cph"))
 Description: Provides a lightweight, table-driven engine for executing insurance rating plans, including coverage-specific rating specifications, entity aggregation, and trace output for auditing. Given policy data, an ordered rating specification, and rating factor tables, it returns rated policies and, optionally, a step-by-step trace of the calculation.
 License: MIT + file LICENSE
+URL: https://github.com/gs-actuary/ratingtables
+BugReports: https://github.com/gs-actuary/ratingtables/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 Suggests: testthat (>= 3.0.0)

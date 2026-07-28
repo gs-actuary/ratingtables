@@ -11,6 +11,10 @@ validate_factor_table(factor_table, max_vars = 12)
 
 \item{max_vars}{Maximum slot count.}
 }
+\value{
+Invisibly returns \code{TRUE} if validation succeeds. Otherwise, the
+function stops with an error.
+}
 \description{
 Validate a factor table
 }

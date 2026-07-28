@@ -15,6 +15,10 @@ apply_rounding(x, rule = NA, digits = NA, increment = NA)
 
 \item{increment}{Increment for nearest_increment.}
 }
+\value{
+A numeric vector containing the rounded values. If \code{rule} is
+missing or \code{"none"}, \code{x} is returned unchanged.
+}
 \description{
 Apply a rounding rule
 }

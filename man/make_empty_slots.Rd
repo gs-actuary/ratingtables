@@ -11,6 +11,10 @@ make_empty_slots(n = 1, max_vars = 12)
 
 \item{max_vars}{Number of variable/level slots.}
 }
+\value{
+A data frame with \code{n} rows and one \code{variable} and \code{level} column
+pair for each requested slot.
+}
 \description{
 Add empty variable/level slot columns
 }

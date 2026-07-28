@@ -35,6 +35,11 @@ new_rating_plan(
 
 \item{metadata}{Optional metadata list.}
 }
+\value{
+A \code{rating_plan} object containing the normalized factor table,
+rating specification, coverages, configuration, custom functions, and
+metadata.
+}
 \description{
 Create a rating plan
 }
