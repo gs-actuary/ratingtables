@@ -419,8 +419,9 @@ potential users is welcome, particularly regarding:
 Bug reports, reproducible examples, feature requests, documentation
 improvements, and focused pull requests are welcome.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for project principles and contribution
-guidelines.
+See the
+[contribution guidelines](https://github.com/gs-actuary/ratingtables/blob/master/CONTRIBUTING.md)
+for project principles and contribution guidelines.
 
 Large design changes should be discussed in a GitHub issue before
 implementation. The package aims to remain lightweight, transparent,
