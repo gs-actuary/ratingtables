@@ -2,19 +2,22 @@
 % Please edit documentation in R/validation.R
 \name{validate_rate_sets}
 \alias{validate_rate_sets}
-\title{Validate rate set fields}
+\title{Check rate-set identifiers and date ranges}
 \usage{
 validate_rate_sets(factor_table)
 }
 \arguments{
-\item{factor_table}{A factor table.}
+\item{factor_table}{A data frame containing rating factors and optional
+rate-set fields.}
 }
 \value{
 Invisibly returns \code{TRUE} if validation succeeds. Otherwise, the
 function stops with an error.
 }
 \description{
-Validate rate set fields
+Check that \code{rate_set_key} contains no missing or blank values when present,
+and that \code{rate_eff_date} is not later than \code{rate_exp_date} when both date
+columns are present.
 }
 \examples{
 ex <- example_rating_plan()

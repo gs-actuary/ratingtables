@@ -39,6 +39,18 @@
 #' )
 #' @export
 apply_caps <- function(rating_data, prior_data, by, coverages, max_increase = NULL, max_decrease = NULL) {
+  if (
+    !is.null(max_increase) &&
+    (
+      length(max_increase) != 1L ||
+      is.na(max_increase) ||
+      !is.numeric(max_increase) ||
+      max_increase < 0
+    )
+  ) {
+    stop("max_increase must be a single nonnegative numeric value.", call. = FALSE)
+  }
+  
   d <- merge(as.data.frame(rating_data, stringsAsFactors = FALSE), as.data.frame(prior_data, stringsAsFactors = FALSE), by = by, all.x = TRUE, suffixes = c("", "_prior"), sort = FALSE)
   for (cov in coverages) {
     new_col <- paste0("indicated_", cov); prior_col <- paste0("prior_", cov); capped_col <- paste0("capped_", cov)

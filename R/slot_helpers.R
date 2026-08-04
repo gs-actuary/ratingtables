@@ -68,9 +68,12 @@ ensure_slot_columns <- function(x, max_vars = 12) {
 }
 
 #' Populate variable/level slots from named values
-#' @param x Data frame.
-#' @param ... Named vectors/lists of variable names and levels.
-#' @param max_vars Maximum slot count.
+#' @param x A data frame to which slot columns will be added or updated.
+#' @param ... Named vectors of levels. Each argument name becomes the value of
+#'   a `variable<n>` column, and its values populate the corresponding
+#'   `level<n>` column. Each vector must have length one or `nrow(x)`.
+#' @param max_vars A nonnegative integer giving the maximum number of
+#'   variable-level slot pairs.
 #' 
 #' @return A data frame containing `x` with variable and level slot columns
 #'   populated from the named values supplied through `...`.

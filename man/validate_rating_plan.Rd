@@ -2,19 +2,21 @@
 % Please edit documentation in R/validation.R
 \name{validate_rating_plan}
 \alias{validate_rating_plan}
-\title{Validate a rating plan}
+\title{Check a rating plan}
 \usage{
 validate_rating_plan(plan)
 }
 \arguments{
-\item{plan}{A rating plan.}
+\item{plan}{A \code{rating_plan} object created by \code{\link[=new_rating_plan]{new_rating_plan()}}.}
 }
 \value{
 Invisibly returns \code{TRUE} if validation succeeds. Otherwise, the
 function stops with an error.
 }
 \description{
-Validate a rating plan
+Run factor-table, rating-specification, and rate-set checks and confirm that
+custom functions referenced by the specification are registered as
+functions in the plan.
 }
 \examples{
 ex <- example_rating_plan()

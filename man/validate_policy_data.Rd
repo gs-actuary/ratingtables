@@ -2,21 +2,23 @@
 % Please edit documentation in R/validation.R
 \name{validate_policy_data}
 \alias{validate_policy_data}
-\title{Validate rating input data}
+\title{Check required rating-data columns}
 \usage{
 validate_policy_data(rating_data, plan)
 }
 \arguments{
-\item{rating_data}{Input data.}
+\item{rating_data}{A data frame containing policy, risk, or entity records.}
 
-\item{plan}{A rating plan.}
+\item{plan}{A \code{rating_plan} object created by \code{\link[=new_rating_plan]{new_rating_plan()}}.}
 }
 \value{
 Invisibly returns \code{TRUE} if validation succeeds. Otherwise, the
 function stops with an error.
 }
 \description{
-Validate rating input data
+Confirm that the input data contains every column returned by
+\code{\link[=required_policy_fields]{required_policy_fields()}}. This function checks column presence but does
+not validate individual values or column types.
 }
 \examples{
 ex <- example_rating_plan()

@@ -1,8 +1,13 @@
 #' Apply a rounding rule
-#' @param x Numeric vector.
-#' @param rule Rounding rule.
-#' @param digits Digits for base R rounding rules.
-#' @param increment Increment for nearest_increment.
+#' @param x A numeric vector.
+#' @param rule A character string naming the rounding rule. Supported values
+#'   are `"none"`, `"round"`, `"floor"`, `"ceiling"`, `"nearest_dollar"`,
+#'   `"nearest_cent"`, `"nearest_dime"`, and `"nearest_increment"`. A missing
+#'   value also leaves `x` unchanged.
+#' @param digits The number of decimal places used when `rule = "round"`.
+#'   A missing value defaults to zero.
+#' @param increment The numeric increment used when
+#'   `rule = "nearest_increment"`.
 #' 
 #' @return A numeric vector containing the rounded values. If `rule` is
 #'   missing or `"none"`, `x` is returned unchanged.

@@ -2,21 +2,24 @@
 % Please edit documentation in R/validation.R
 \name{validate_factor_table}
 \alias{validate_factor_table}
-\title{Validate a factor table}
+\title{Check minimum factor-table structure}
 \usage{
 validate_factor_table(factor_table, max_vars = 12)
 }
 \arguments{
-\item{factor_table}{A factor table.}
+\item{factor_table}{A data frame containing rating factors.}
 
-\item{max_vars}{Maximum slot count.}
+\item{max_vars}{A nonnegative integer giving the number of variable-level
+slot pairs to add before validation.}
 }
 \value{
 Invisibly returns \code{TRUE} if validation succeeds. Otherwise, the
 function stops with an error.
 }
 \description{
-Validate a factor table
+Confirm that a factor table contains \code{term_name} and \code{term_value} and that
+every \code{term_value} is numeric or coercible to numeric. This function does
+not check for duplicate lookup keys; use \code{\link[=find_duplicate_factors]{find_duplicate_factors()}} for that.
 }
 \examples{
 ex <- example_rating_plan()

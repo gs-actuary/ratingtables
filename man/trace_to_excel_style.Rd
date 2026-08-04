@@ -11,8 +11,10 @@ trace_to_excel_style(term_trace)
 typically from \code{\link[=rate_policies_with_trace]{rate_policies_with_trace()}}.}
 }
 \value{
-A data frame ordered by record, coverage, and step number, containing
-the principal rating inputs, applied values, and before-and-after values.
+A data frame ordered by row number, coverage, and step number. It
+contains the available columns among \code{row_number}, \code{record_id}, \code{coverage},
+\code{step_number}, \code{term_name}, \code{value_source}, \code{calculation_type},
+\code{applied_value}, \code{value_before_step}, and \code{value_after_step}.
 }
 \description{
 Select and order the principal trace columns to produce a compact,

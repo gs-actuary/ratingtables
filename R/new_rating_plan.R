@@ -1,13 +1,24 @@
 #' Create a rating plan
-#' @param factor_table Normalized long-format factor table.
-#' @param rating_spec Rating specification.
-#' @param coverages Character vector of coverages to rate.
-#' @param use_rate_set_key Whether rating rows select factors using rate_set_key.
-#' @param max_vars Maximum number of variable/level slots.
-#' @param policy_id_col Policy identifier column.
-#' @param custom_functions Named list of user-written R functions.
-#' @param validate Whether to validate.
-#' @param metadata Optional metadata list.
+#' @param factor_table A normalized long-format data frame containing at least
+#'   `term_name` and `term_value`, plus optional coverage, rate-set, and
+#'   variable-level lookup columns.
+#' @param rating_spec A data frame containing at least `term_name` and
+#'   `calculation_type`. Optional specification columns are normalized and
+#'   supplied with defaults.
+#' @param coverages A character vector naming the coverages to rate.
+#' @param use_rate_set_key Logical. If `TRUE`, factor rows are selected using a
+#'   `rate_set_key` supplied in the rating data rather than automatic
+#'   state-, charter-, book-segment-, and date-based selection.
+#' @param max_vars A nonnegative integer giving the maximum number of
+#'   variable-level slot pairs in the factor table.
+#' @param policy_id_col A single character string naming the policy or record
+#'   identifier column. Its value is stored as `record_id` in trace output; if
+#'   the column is absent, the source row number is used.
+#' @param custom_functions A named list of custom rating functions referenced
+#'   by `custom_function` rows in the rating specification.
+#' @param validate Logical. If `TRUE`, run [validate_rating_plan()] before
+#'   returning the plan.
+#' @param metadata An optional list stored unchanged in the rating-plan object.
 #' 
 #' @return A `rating_plan` object containing the normalized factor table,
 #'   rating specification, coverages, configuration, custom functions, and

@@ -2,7 +2,7 @@
 % Please edit documentation in R/trace_helpers.R
 \name{trace_to_wide_factors}
 \alias{trace_to_wide_factors}
-\title{Reshape rating trace to wide factor columns}
+\title{Reshape rating trace to wide step-value columns}
 \usage{
 trace_to_wide_factors(
   term_trace,
@@ -13,16 +13,19 @@ trace_to_wide_factors(
 \item{term_trace}{A data frame containing normalized rating trace rows,
 typically from \code{\link[=rate_policies_with_trace]{rate_policies_with_trace()}}.}
 
-\item{id_cols}{A character vector naming the columns that uniquely identify
-each output row.}
+\item{id_cols}{A character vector naming columns in \code{term_trace} that define
+the output rows. Names not present in \code{term_trace} are ignored.}
 }
 \value{
-A wide data frame containing the identifying columns and one
-\verb{step_<number>_<term>} column for each rating step.
+If \code{term_trace} is nonempty, a data frame with one row per unique
+combination of the available \code{id_cols} and columns named
+\verb{step_<number>_<term>} containing applied step values. If \code{term_trace} is
+empty, the empty input data frame is returned unchanged.
 }
 \description{
-Convert normalized trace rows into one row per rating record and coverage,
-with a separate column for each rating step.
+Convert normalized trace rows into one row per unique combination of
+identifying columns, with a separate column for each rating step. Generated
+step columns contain the trace's \code{applied_value}.
 }
 \examples{
 ex <- example_rating_plan()

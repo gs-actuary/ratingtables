@@ -2,19 +2,20 @@
 % Please edit documentation in R/validation.R
 \name{required_policy_fields}
 \alias{required_policy_fields}
-\title{Required policy fields for a plan}
+\title{Identify required rating-data fields}
 \usage{
 required_policy_fields(plan)
 }
 \arguments{
-\item{plan}{A rating plan.}
+\item{plan}{A \code{rating_plan} object created by \code{\link[=new_rating_plan]{new_rating_plan()}}.}
 }
 \value{
-A character vector containing the unique policy-data field names
-required to execute the rating plan.
+A character vector containing the unique input-data column names
+required by the plan.
 }
 \description{
-Required policy fields for a plan
+Collect fields referenced by factor-table lookup slots, specification input
+and lookup columns, and applicable rate-set metadata.
 }
 \examples{
 ex <- example_rating_plan()

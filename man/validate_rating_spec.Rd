@@ -2,21 +2,25 @@
 % Please edit documentation in R/validation.R
 \name{validate_rating_spec}
 \alias{validate_rating_spec}
-\title{Validate a rating specification}
+\title{Check rating-specification fields}
 \usage{
 validate_rating_spec(rating_spec, ...)
 }
 \arguments{
-\item{rating_spec}{Rating spec.}
+\item{rating_spec}{A data frame containing the rating specification. It must
+contain \code{term_name} and \code{calculation_type}; omitted optional columns are
+added during normalization.}
 
-\item{...}{Ignored for compatibility.}
+\item{...}{Additional arguments accepted for backward compatibility and
+currently ignored.}
 }
 \value{
 Invisibly returns \code{TRUE} if validation succeeds. Otherwise, the
 function stops with an error.
 }
 \description{
-Validate a rating specification
+Normalize a rating specification and check its value sources, calculation
+types, and required lookup, input, or custom-function fields.
 }
 \examples{
 ex <- example_rating_plan()

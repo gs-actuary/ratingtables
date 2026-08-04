@@ -167,11 +167,14 @@ lookup_interpolated_value <- function(row, coverage, plan, term_name, lookup_var
   ord <- order(xs); xs <- xs[ord]; ys <- ys[ord]; cand <- cand[ord, , drop = FALSE]
   if (any(duplicated(xs))) stop("Duplicate interpolation x-values for term '", term_name, "'.", call. = FALSE)
   if (length(xs) == 1) stop("Interpolation requires at least two x-values.", call. = FALSE)
-  bounds <- as.character(bounds)
+  bounds <- match.arg(
+    as.character(bounds),
+    c("error", "clamp", "extrapolate")
+  )
   if (x < min(xs) || x > max(xs)) {
     if (bounds == "error") stop("Interpolation input for term '", term_name, "' is outside table bounds.", call. = FALSE)
     if (bounds == "clamp") x <- min(max(x, min(xs)), max(xs))
-    if (!(bounds %in% c("error", "clamp", "extrapolate"))) stop("Unsupported interpolation bounds: ", bounds, call. = FALSE)
+    
   }
   if (x %in% xs) {
     idx <- which(xs == x)[1]

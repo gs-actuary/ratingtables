@@ -1,6 +1,12 @@
-#' Validate a factor table
-#' @param factor_table A factor table.
-#' @param max_vars Maximum slot count.
+#' Check minimum factor-table structure
+#'
+#' Confirm that a factor table contains `term_name` and `term_value` and that
+#' every `term_value` is numeric or coercible to numeric. This function does
+#' not check for duplicate lookup keys; use [find_duplicate_factors()] for that.
+#'
+#' @param factor_table A data frame containing rating factors.
+#' @param max_vars A nonnegative integer giving the number of variable-level
+#'   slot pairs to add before validation.
 #' 
 #' @return Invisibly returns `TRUE` if validation succeeds. Otherwise, the
 #'   function stops with an error.
@@ -69,9 +75,16 @@ find_duplicate_factors <- function(factor_table, max_vars = 12, ...) {
   ft[duplicated(key) | duplicated(key, fromLast = TRUE), , drop = FALSE]
 }
 
-#' Validate a rating specification
-#' @param rating_spec Rating spec.
-#' @param ... Ignored for compatibility.
+#' Check rating-specification fields
+#'
+#' Normalize a rating specification and check its value sources, calculation
+#' types, and required lookup, input, or custom-function fields.
+#'
+#' @param rating_spec A data frame containing the rating specification. It must
+#'   contain `term_name` and `calculation_type`; omitted optional columns are
+#'   added during normalization.
+#' @param ... Additional arguments accepted for backward compatibility and
+#'   currently ignored.
 #' 
 #' @return Invisibly returns `TRUE` if validation succeeds. Otherwise, the
 #'   function stops with an error.
@@ -103,8 +116,14 @@ validate_rating_spec <- function(rating_spec, ...) {
   invisible(TRUE)
 }
 
-#' Validate rate set fields
-#' @param factor_table A factor table.
+#' Check rate-set identifiers and date ranges
+#'
+#' Check that `rate_set_key` contains no missing or blank values when present,
+#' and that `rate_eff_date` is not later than `rate_exp_date` when both date
+#' columns are present.
+#'
+#' @param factor_table A data frame containing rating factors and optional
+#'   rate-set fields.
 #' 
 #' @return Invisibly returns `TRUE` if validation succeeds. Otherwise, the
 #'   function stops with an error.
@@ -125,8 +144,13 @@ validate_rate_sets <- function(factor_table) {
   invisible(TRUE)
 }
 
-#' Validate a rating plan
-#' @param plan A rating plan.
+#' Check a rating plan
+#'
+#' Run factor-table, rating-specification, and rate-set checks and confirm that
+#' custom functions referenced by the specification are registered as
+#' functions in the plan.
+#'
+#' @param plan A `rating_plan` object created by [new_rating_plan()].
 #' 
 #' @return Invisibly returns `TRUE` if validation succeeds. Otherwise, the
 #'   function stops with an error.
@@ -154,11 +178,15 @@ validate_rating_plan <- function(plan) {
   invisible(TRUE)
 }
 
-#' Required policy fields for a plan
-#' @param plan A rating plan.
-#' 
-#' @return A character vector containing the unique policy-data field names
-#'   required to execute the rating plan.
+#' Identify required rating-data fields
+#'
+#' Collect fields referenced by factor-table lookup slots, specification input
+#' and lookup columns, and applicable rate-set metadata.
+#'
+#' @param plan A `rating_plan` object created by [new_rating_plan()].
+#'
+#' @return A character vector containing the unique input-data column names
+#'   required by the plan.
 #' 
 #' @examples
 #' ex <- example_rating_plan()
@@ -185,9 +213,14 @@ required_policy_fields <- function(plan) {
   unique(fields)
 }
 
-#' Validate rating input data
-#' @param rating_data Input data.
-#' @param plan A rating plan.
+#' Check required rating-data columns
+#'
+#' Confirm that the input data contains every column returned by
+#' [required_policy_fields()]. This function checks column presence but does
+#' not validate individual values or column types.
+#'
+#' @param rating_data A data frame containing policy, risk, or entity records.
+#' @param plan A `rating_plan` object created by [new_rating_plan()].
 #' 
 #' @return Invisibly returns `TRUE` if validation succeeds. Otherwise, the
 #'   function stops with an error.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/trace_helpers.R
 \name{append_rating_factors}
 \alias{append_rating_factors}
-\title{Append rating factors to rated data}
+\title{Append wide rating-step values to rated data}
 \usage{
 append_rating_factors(rated_data, term_trace, by = "row_number")
 }
@@ -11,16 +11,22 @@ append_rating_factors(rated_data, term_trace, by = "row_number")
 
 \item{term_trace}{A data frame containing normalized rating trace rows.}
 
-\item{by}{A character vector naming the identifying column or columns used
-to join the wide trace values to \code{rated_data}.}
+\item{by}{A character vector naming the columns used both to reshape
+\code{term_trace} and to join the resulting wide data to \code{rated_data}. The
+default is \code{"row_number"}.}
 }
 \value{
-A data frame containing the rated records with wide rating-step
-columns appended.
+A data frame containing the rated records, a generated \code{row_number}
+column, and wide \verb{step_<number>_<term>} columns containing applied step
+values.
 }
 \description{
-Reshape normalized trace rows to wide rating-factor columns and join them
-back to the rated records.
+Reshape normalized trace rows into wide applied-value columns and join them
+to the rated records.
+}
+\details{
+The function creates or replaces a \code{row_number} column in \code{rated_data} using
+its current row order.
 }
 \examples{
 ex <- example_rating_plan()

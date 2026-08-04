@@ -17,23 +17,34 @@ new_rating_plan(
 )
 }
 \arguments{
-\item{factor_table}{Normalized long-format factor table.}
+\item{factor_table}{A normalized long-format data frame containing at least
+\code{term_name} and \code{term_value}, plus optional coverage, rate-set, and
+variable-level lookup columns.}
 
-\item{rating_spec}{Rating specification.}
+\item{rating_spec}{A data frame containing at least \code{term_name} and
+\code{calculation_type}. Optional specification columns are normalized and
+supplied with defaults.}
 
-\item{coverages}{Character vector of coverages to rate.}
+\item{coverages}{A character vector naming the coverages to rate.}
 
-\item{use_rate_set_key}{Whether rating rows select factors using rate_set_key.}
+\item{use_rate_set_key}{Logical. If \code{TRUE}, factor rows are selected using a
+\code{rate_set_key} supplied in the rating data rather than automatic
+state-, charter-, book-segment-, and date-based selection.}
 
-\item{max_vars}{Maximum number of variable/level slots.}
+\item{max_vars}{A nonnegative integer giving the maximum number of
+variable-level slot pairs in the factor table.}
 
-\item{policy_id_col}{Policy identifier column.}
+\item{policy_id_col}{A single character string naming the policy or record
+identifier column. Its value is stored as \code{record_id} in trace output; if
+the column is absent, the source row number is used.}
 
-\item{custom_functions}{Named list of user-written R functions.}
+\item{custom_functions}{A named list of custom rating functions referenced
+by \code{custom_function} rows in the rating specification.}
 
-\item{validate}{Whether to validate.}
+\item{validate}{Logical. If \code{TRUE}, run \code{\link[=validate_rating_plan]{validate_rating_plan()}} before
+returning the plan.}
 
-\item{metadata}{Optional metadata list.}
+\item{metadata}{An optional list stored unchanged in the rating-plan object.}
 }
 \value{
 A \code{rating_plan} object containing the normalized factor table,

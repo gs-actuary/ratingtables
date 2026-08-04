@@ -7,13 +7,18 @@
 apply_rounding(x, rule = NA, digits = NA, increment = NA)
 }
 \arguments{
-\item{x}{Numeric vector.}
+\item{x}{A numeric vector.}
 
-\item{rule}{Rounding rule.}
+\item{rule}{A character string naming the rounding rule. Supported values
+are \code{"none"}, \code{"round"}, \code{"floor"}, \code{"ceiling"}, \code{"nearest_dollar"},
+\code{"nearest_cent"}, \code{"nearest_dime"}, and \code{"nearest_increment"}. A missing
+value also leaves \code{x} unchanged.}
 
-\item{digits}{Digits for base R rounding rules.}
+\item{digits}{The number of decimal places used when \code{rule = "round"}.
+A missing value defaults to zero.}
 
-\item{increment}{Increment for nearest_increment.}
+\item{increment}{The numeric increment used when
+\code{rule = "nearest_increment"}.}
 }
 \value{
 A numeric vector containing the rounded values. If \code{rule} is

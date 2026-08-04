@@ -1,15 +1,18 @@
-#' Reshape rating trace to wide factor columns
+#' Reshape rating trace to wide step-value columns
 #'
-#' Convert normalized trace rows into one row per rating record and coverage,
-#' with a separate column for each rating step.
+#' Convert normalized trace rows into one row per unique combination of
+#' identifying columns, with a separate column for each rating step. Generated
+#' step columns contain the trace's `applied_value`.
 #'
 #' @param term_trace A data frame containing normalized rating trace rows,
 #'   typically from [rate_policies_with_trace()].
-#' @param id_cols A character vector naming the columns that uniquely identify
-#'   each output row.
+#' @param id_cols A character vector naming columns in `term_trace` that define
+#'   the output rows. Names not present in `term_trace` are ignored.
 #'
-#' @return A wide data frame containing the identifying columns and one
-#'   `step_<number>_<term>` column for each rating step.
+#' @return If `term_trace` is nonempty, a data frame with one row per unique
+#'   combination of the available `id_cols` and columns named
+#'   `step_<number>_<term>` containing applied step values. If `term_trace` is
+#'   empty, the empty input data frame is returned unchanged.
 #' @examples
 #' ex <- example_rating_plan()
 #'
@@ -44,8 +47,10 @@ trace_to_wide_factors <- function(term_trace, id_cols = c("row_number", "record_
 #' @param term_trace A data frame containing normalized rating trace rows,
 #'   typically from [rate_policies_with_trace()].
 #'
-#' @return A data frame ordered by record, coverage, and step number, containing
-#'   the principal rating inputs, applied values, and before-and-after values.
+#' @return A data frame ordered by row number, coverage, and step number. It
+#'   contains the available columns among `row_number`, `record_id`, `coverage`,
+#'   `step_number`, `term_name`, `value_source`, `calculation_type`,
+#'   `applied_value`, `value_before_step`, and `value_after_step`.
 #' @examples
 #' ex <- example_rating_plan()
 #'
@@ -65,18 +70,23 @@ trace_to_excel_style <- function(term_trace) {
   tr[order(tr$row_number, tr$coverage, tr$step_number), intersect(cols, names(tr)), drop = FALSE]
 }
 
-#' Append rating factors to rated data
+#' Append wide rating-step values to rated data
 #'
-#' Reshape normalized trace rows to wide rating-factor columns and join them
-#' back to the rated records.
+#' Reshape normalized trace rows into wide applied-value columns and join them
+#' to the rated records.
+#'
+#' The function creates or replaces a `row_number` column in `rated_data` using
+#' its current row order.
 #'
 #' @param rated_data A data frame containing rated policy or entity records.
 #' @param term_trace A data frame containing normalized rating trace rows.
-#' @param by A character vector naming the identifying column or columns used
-#'   to join the wide trace values to `rated_data`.
+#' @param by A character vector naming the columns used both to reshape
+#'   `term_trace` and to join the resulting wide data to `rated_data`. The
+#'   default is `"row_number"`.
 #'
-#' @return A data frame containing the rated records with wide rating-step
-#'   columns appended.
+#' @return A data frame containing the rated records, a generated `row_number`
+#'   column, and wide `step_<number>_<term>` columns containing applied step
+#'   values.
 #' @examples
 #' ex <- example_rating_plan()
 #'

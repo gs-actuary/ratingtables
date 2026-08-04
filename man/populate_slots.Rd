@@ -7,11 +7,14 @@
 populate_slots(x, ..., max_vars = 12)
 }
 \arguments{
-\item{x}{Data frame.}
+\item{x}{A data frame to which slot columns will be added or updated.}
 
-\item{...}{Named vectors/lists of variable names and levels.}
+\item{...}{Named vectors of levels. Each argument name becomes the value of
+a \verb{variable<n>} column, and its values populate the corresponding
+\verb{level<n>} column. Each vector must have length one or \code{nrow(x)}.}
 
-\item{max_vars}{Maximum slot count.}
+\item{max_vars}{A nonnegative integer giving the maximum number of
+variable-level slot pairs.}
 }
 \value{
 A data frame containing \code{x} with variable and level slot columns
